@@ -49,10 +49,6 @@ const BoardJobDetail = ({ route }) => {
       params: { jobId },
     });
   };
-  const handleListPress = () => {
-    // Navigate to the list screen (Board_Job)
-    
-  };
 
   return (
     <ScrollView>

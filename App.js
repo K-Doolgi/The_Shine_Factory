@@ -1,12 +1,13 @@
 // 수정사항(1125) - Log-in, out 상황별 기능제한 추가
 // App.js - log out 상태, 게시판 접근시 바로 로그인 화면으로 이동
 //Applogin.js - log in 상태, 게시판 접근 정상화
-import React, { useState, useEffect } from 'react';
+// 수정사항(1128) - 상단 메뉴의 구성 및 디자인 개편
+// 취미, 취업 게시판 분리, 프론트 디자인 png로 구성 (나중에 필요에 따라 교육홍보에 링크 걸 수 있음)
+import React, { useState, } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, StatusBar, Image, ScrollView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
-// import GifPlayer from 'react-native-gif';
 
 // import for About
 import Company from './Company';
@@ -46,116 +47,91 @@ import Signupenterprise from './Signupenterprise';
 
 const Stack = createStackNavigator();
 
-const gifs = [
-  require('./images/tsf_main1.gif'),
-  require('./images/tsf_main2.gif'),
-  require('./images/tsf_main3.gif'),
-];
-
-const getRandomGif = () => {
-  const randomIndex = Math.floor(Math.random() * gifs.length);
-  return gifs[randomIndex];
-};
-
 const HomeScreen = ({ navigation }) => {
   const [showAboutSubMenu, setShowAboutSubMenu] = useState(false);
   const [showEducationSubMenu, setShowEducationSubMenu] = useState(false);
-  const [showBoardSubMenu, setShowBoardSubMenu] = useState(false);
 
   const toggleAboutSubMenu = () => {
     setShowAboutSubMenu(!showAboutSubMenu);
-    setShowBoardSubMenu(false);
     setShowEducationSubMenu(false);
   };
 
   const toggleEducationSubMenu = () => {
     setShowEducationSubMenu(!showEducationSubMenu);
-    setShowBoardSubMenu(false);
     setShowAboutSubMenu(false);
   };
-
-  const toggleBoardSubMenu = () => {
-    setShowBoardSubMenu(!showBoardSubMenu);
-    setShowEducationSubMenu(false);
-    setShowAboutSubMenu(false);
-  };
-
-  // const [currentGif, setCurrentGif] = useState(getRandomGif());
-
-  // useEffect(() => {
-  //   setCurrentGif(getRandomGif());
-  // }, []);
 
   return (
     <View style={styles.container}>
-    
+
       <View style={styles.title}>
+
         <Text style={styles.titleText}>The Shine Factory</Text>
+
         <TouchableOpacity style={styles.Sign} onPress={() => navigation.navigate('Signin')}>
-            <Text>Log-in</Text>
+            <Text>Log-In</Text>
           </TouchableOpacity>
+
       </View>
-      
-      <View style={styles.menu}>
-      <View style={styles.menuItem}>
-          <TouchableOpacity onPress={toggleAboutSubMenu}>
-            <Text>About</Text>
-          </TouchableOpacity>
-          {showAboutSubMenu && (
-            <View style={styles.submenu}>
-            <TouchableOpacity onPress={() => navigation.navigate('Company')}>
-              <Text>The Shine Factory</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Greeting')}>
-              <Text>Greetnig</Text>
-            </TouchableOpacity>
-          </View>
-          )}
-        </View>
+
+    <View style={styles.menu}>
         
-        <View style={styles.menuItem}>
-          <TouchableOpacity onPress={toggleEducationSubMenu}>
-            <Text>Education</Text>
+      <View>
+
+          <TouchableOpacity onPress={toggleAboutSubMenu}>
+            <Text  style={styles.menuItem}>About</Text>
           </TouchableOpacity>
-          {showEducationSubMenu && (
-            <View style={styles.submenu}>
-            <TouchableOpacity onPress={() => navigation.navigate('Signin')}>
-              <Text>Technology</Text>
+
+          {showAboutSubMenu && (
+            <View>
+            <TouchableOpacity onPress={() => navigation.navigate('Company')}>
+              <Text style={styles.submenu}>The Shine Factory</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Signin')}>
-              <Text>Art Class</Text>
+
+            <TouchableOpacity onPress={() => navigation.navigate('Greeting')}>
+              <Text style={styles.submenu}>Greetnig</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Signin')}>
-              <Text>Apply</Text>
-            </TouchableOpacity>
+
           </View>
           )}
+
         </View>
-        <View style={styles.menuItem}>
-          <TouchableOpacity onPress={toggleBoardSubMenu}>
-            <Text>Board</Text>
+
+        <View>
+
+          <TouchableOpacity onPress={toggleEducationSubMenu}>
+            <Text  style={styles.menuItem}>Education</Text>
           </TouchableOpacity>
-          {showBoardSubMenu && (
-            <View style={styles.submenu}>
-              <TouchableOpacity onPress={() => navigation.navigate('Signin')}>
-                <Text>Hobby</Text>
+
+          {showEducationSubMenu && (
+            <View>
+
+              <TouchableOpacity onPress={() => navigation.navigate('BoardEduTech')}>
+                <Text  style={styles.submenu}>Technology</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate('Signin')}>
-                <Text>Job</Text>
+
+              <TouchableOpacity onPress={() => navigation.navigate('BoardEduArt')}>
+                <Text  style={styles.submenu}>Art Class</Text>
               </TouchableOpacity>
+
             </View>
           )}
         </View>
-        
+
+        <View>
+          <TouchableOpacity onPress={() => navigation.navigate('BoardHobby')}>
+            <Text style={styles.menuItem}>Hobby</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View>
+          <TouchableOpacity onPress={() => navigation.navigate('BoardJob')}>
+            <Text style={styles.menuItem}>Job</Text>
+          </TouchableOpacity>
+        </View>
+
       </View>
-      {/* <GifPlayer
-        gifSource={currentGif}
-        style={styles.gif}
-      />
-      <View style={styles.overlay}>
-        <Text style={styles.Maintitle}>The Shine Factory</Text>
-      </View> */}
-      
+
       <View style={styles.contents}>
       <ScrollView
         contentContainerStyle={styles.scrollViewContent}
@@ -178,52 +154,52 @@ const HomeScreen = ({ navigation }) => {
       </ScrollView>
     </View>
 
-
-      
     </View>
   );
 };
 
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      marginTop: StatusBar.currentHeight,
+      backgroundColor: 'white',
+      padding: 20,
+    },
+    // 수정사항(1128) - 이미지 배치에 관한 스타일 서식
+    contents: {
+      flex: 1,
+    },
+    scrollViewContent: {
+      flexGrow: 1,
+    },
+    imageContainer: {
+      width: '100%',
+      aspectRatio: 16 / 9,
+    },
+    Image: {
+      flex: 1,
+      width: '100%',
+      height: undefined,
+      aspectRatio: 16 / 9,
+    },
+    adContainer: {
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
+      alignItems: 'flex-start',
+    },
+    adImage: {
+      width: '100%',
+      height: undefined,
+      aspectRatio: 16 / 9,
+      marginBottom: 5,
+    },
+    LowImage: {
+      width: '100%',
+      height: undefined,
+      aspectRatio: 16 / 9,
+    },
+    // 수정사항(1128) - 이미지 파일에 대한 스타일 서식 fin.
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight,
-    backgroundColor: 'white',
-    padding: 20,
-  },
-  contents: {
-    flex: 1,
-  },
-  scrollViewContent: {
-    flexGrow: 1,
-  },
-  imageContainer: {
-    width: '100%',
-    aspectRatio: 16 / 9,
-  },
-  Image: {
-    flex: 1,
-    width: '100%',
-    height: undefined,
-    aspectRatio: 16 / 9,
-  },
-  adContainer: {
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-  },
-  adImage: {
-    width: '100%',
-    height: undefined,
-    aspectRatio: 16 / 9,
-    marginBottom: 5,
-  },
-  LowImage: {
-    width: '100%',
-    height: undefined,
-    aspectRatio: 16 / 9,
-  },
   title: {
     fontSize: 24,
     paddingBottom: 20,
@@ -248,20 +224,16 @@ const styles = StyleSheet.create({
   },
   menuItem: {
     padding: 10,
+      fontSize: 18,
+      fontWeight: 'bold',
   },
   submenu: {
-    marginLeft: 10,
-    marginTop: 5,
+    paddingBottom: 10,
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
-  // gif: {
-  //   width: '100%',
-  //   height: '100%',
-  // },
-  // overlay: {
-  //   ...StyleSheet.absoluteFillObject,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  // },
+
   Maintitle: {
     color: 'white',
     fontSize: 36,

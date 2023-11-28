@@ -75,6 +75,8 @@ const styles = StyleSheet.create({
   },
   forgotPassword: {
     color: 'blue',
+    fontSize: 18,
+    fontWeight: 'bold',
     margin: 12,
   },
   //수정사항(1127): Sign in을 위한 디자인 추가
@@ -91,6 +93,8 @@ const styles = StyleSheet.create({
   signUpLink: {
     marginTop: 16,
     color: 'green',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
 

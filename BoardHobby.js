@@ -12,25 +12,28 @@ import { Card } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 
 const BoardHobby = () => {
-  const jobData = [
+  const HobbyData = [
     { id: 1, title: '밴드 동아리 구합니다.', writer: '무야호', date: '2021.1.16', count: 33 },
     // Add more data as needed
   ];
 
+  // 수정사항(1128) - 게시글 8개당 한페이지 씩 넘어가도록 구현
   const navigation = useNavigation();
   const pageSize = 8; // 페이지당 보여질 게시글 수
   const [currentPage, setCurrentPage] = useState(1);
 
-  const paginatedJobData = jobData.slice(
+  const paginatedHobbyData = HobbyData.slice(
     (currentPage - 1) * pageSize,
     currentPage * pageSize
   );
 
-  const totalPages = Math.ceil(jobData.length / pageSize);
+  // 여기서도 게시글 데이터 호출을 어떤 방식으로 하는지 감이 안잡혀,
+  // 만들고 방치
+  const totalPages = Math.ceil(HobbyData.length / pageSize);
 
   const renderItem = ({ item }) => (
     <Card containerStyle={styles.card} key={item.id}>
-      <TouchableOpacity onPress={() => navigation.navigate('BoardHobbyView', { jobId: item.id })}>
+      <TouchableOpacity onPress={() => navigation.navigate('BoardHobbyView', { HobbyId: item.id })}>
         <Text style={styles.cardTitle}>{item.title}</Text>
         <View style={styles.cardInfo}>
           <Text style={styles.cardInfoText}>글쓴이: {item.writer}</Text>
@@ -74,8 +77,9 @@ const BoardHobby = () => {
           </View>
         </View>
 
+        {/* 수정사항(1128) - 게시글 8개당 한 페이지를 이뤄 넘길 수 있도록 수정 */}
         <FlatList
-          data={paginatedJobData}
+          data={paginatedHobbyData}
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
         />

@@ -16,7 +16,9 @@ const BoardJob = () => {
     { id: 1, title: '구인합니다.', writer: '김이름', date: '2021.1.15', count: 33 },
     // Add more data as needed
   ];
-
+  // 수정사항(1128) - 게시글 8개당 한페이지 씩 넘어가도록 구현
+  // Card -> flatlist 하나로 게시글 여러개를 불러 올 수 있는 구조인지, 
+  // 어떤 방식으로 DB에서 데이터를 갖고오는지 몰라서 일단 제작후 방치
   const navigation = useNavigation();
   const pageSize = 8; // 페이지당 보여질 게시글 수
   const [currentPage, setCurrentPage] = useState(1);
@@ -74,13 +76,15 @@ const BoardJob = () => {
             </TouchableOpacity>
           </View>
         </View>
-        {/* <ScrollView> */}
+        {/* 수정사항(1128) - 게시글 8개당 한페이지 씩 넘어가도록 구현 */}
+        {/* Card -> flatlist 하나로 게시글 여러개를 불러 올 수 있는 구조인지,  */}
+        {/* 어떤 방식으로 DB에서 데이터를 갖고오는지 몰라서 일단 제작후 방치 */}
         <FlatList
           data={paginatedJobData}
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
         />
-        {/* </ScrollView> */}
+        
         <View style={styles.paginationContainer}>
           
           <TouchableOpacity

@@ -1,3 +1,4 @@
+// 수정사항 (1128) - 디자인적인 개선과 양식 통일 위해 UI와 디자인 개편
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet, StatusBar, ScrollView, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -22,6 +23,8 @@ const BoardHobbyView = ({ route }) => {
     navigation.navigate('BoardHobbyEdit', { hobbyId });
   };
 
+  // 수정사항(1128) - 삭제 버튼과 경고창 추가
+  // 삭제 버튼 클릭 시, 경고창이 뜨도록 제작
   const handleDelete = () => {
     // 여기에서 게시글 삭제 로직을 추가
     // 이 부분에서 실제로 데이터를 삭제하거나 API를 호출하여 서버에서 삭제할 수 있습니다.
@@ -73,6 +76,8 @@ const BoardHobbyView = ({ route }) => {
             <Image style={styles.image} source={hobbyDetails.image} />
             <Text style={styles.content}>{hobbyDetails.content}</Text>
           </View>
+          {/* // 수정사항(1128) - 삭제 버튼과 경고창 추가
+              // 삭제 버튼 클릭 시, 경고창이 뜨도록 제작 */}
           <TouchableOpacity style={styles.deleteButton} onPress={() => setConfirmDelete(true)}>
             <Text style={styles.buttonText}>삭제</Text>
           </TouchableOpacity>

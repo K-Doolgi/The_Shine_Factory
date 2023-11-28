@@ -1,3 +1,4 @@
+// 수정사항 (1128) - 디자인적인 개선과 양식 통일 위해 UI와 디자인 개편
 import React, { useState } from 'react';
 import {
   View,
