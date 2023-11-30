@@ -51,7 +51,7 @@ const BoardEduArtDetail = ({ route }) => {
           onPress: () => {
             // 신청 정보를 출력하고 알림창 띄우기
             console.log('신청자 정보:');
-            console.log('교육명:', Art.Art.EduName);
+            console.log('교육명:', Artdetail1.ArtInfo.EduName);
             console.log('User Type:', userType);
             console.log('Name:', name);
             console.log('UserName:', username);
