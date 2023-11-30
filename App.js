@@ -3,11 +3,16 @@
 //Applogin.js - log in 상태, 게시판 접근 정상화
 // 수정사항(1128) - 상단 메뉴의 구성 및 디자인 개편
 // 취미, 취업 게시판 분리, 프론트 디자인 png로 구성 (나중에 필요에 따라 교육홍보에 링크 걸 수 있음)
-import React, { useState, } from 'react';
+// 수정사항 (1130) - 로그인 API 기능 추가
+// 로그인 했을 때 기존 App.js의 버튼이 log-in -> log-out으로 변경 가능
+// 이 기능을 이용해서 계정별 게시판 이용권한 조정 예정
+// App.js
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, StatusBar, Image, ScrollView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
+import { AuthProvider, useAuth } from './AuthContext';
 
 // import for About
 import Company from './Company';
@@ -18,14 +23,25 @@ import Applogin from './Applogin';
 
 //import for Education
 import BoardEduTech from './BoardEduTech';
+
+import BoardEduTechWrite from './BoardEduTechWrite';
+
+import BoardEduTechDetail from './BoardEduTechDetail';
+import BoardEduTechEdit from './BoardEduTechEdit';
+
+import BoardEduTechDetail2 from './BoardEduTechDetail2';
+import BoardEduTechEdit2 from './BoardEduTechEdit2';
+
+import BoardEduTechDetail3 from './BoardEduTechDetail3';
+import BoardEduTechEdit3 from './BoardEduTechEdit3';
+
+
+// import for Art Class
 import BoardEduArt from './BoardEduArt';
-import BoardEduApply from './BoardEduApply';
-import Education_Write1 from './Education_Write1';
-import Education_edit1 from './Education_edit1';
-import Education_view1 from './Education_view1';
-import Education_Write2 from './Education_Write2';
-import Education_edit2 from './Education_edit2';
-import Education_view2 from './Education_view2';
+import BoardEduArtWrite from './BoardEduArtWrite';
+import BoardEduArtDetail from './BoardEduArtDetail';
+import BoardEduArtEdit from './BoardEduArtEdit';
+
 
 // import for Job Board
 import BoardJob from './Board_Job';
@@ -44,10 +60,23 @@ import Signin from './Signin';
 import Signup from './Signup';
 import Signupuser from './Signupuser';
 import Signupenterprise from './Signupenterprise';
+import FindPW from './FindPW';
+import ResetPW from './ResetPW';
+
 
 const Stack = createStackNavigator();
 
+// 수정사항 (1130) - 로그인 API 기능 추가
+// 로그인 했을 때 기존 App.js의 버튼이 log-in -> log-out으로 변경 가능
+// 이 기능을 이용해서 계정별 게시판 이용권한 조정 예정
 const HomeScreen = ({ navigation }) => {
+  const { isLoggedIn, logout } = useAuth(); // useAuth 추가
+
+  useEffect(() => {
+    // isLoggedIn이 변경될 때 실행되는 로직
+    console.log('isLoggedIn 상태:', isLoggedIn);
+  }, [isLoggedIn]); // isLoggedIn이 변경될 때만 실행
+  
   const [showAboutSubMenu, setShowAboutSubMenu] = useState(false);
   const [showEducationSubMenu, setShowEducationSubMenu] = useState(false);
 
@@ -66,12 +95,22 @@ const HomeScreen = ({ navigation }) => {
 
       <View style={styles.title}>
 
-        <Text style={styles.titleText}>The Shine Factory</Text>
-
-        <TouchableOpacity style={styles.Sign} onPress={() => navigation.navigate('Signin')}>
+      <Text style={styles.titleText}>The Shine Factory</Text>
+        
+        
+        
+        
+        {isLoggedIn ? (
+          // 로그인된 경우
+          <TouchableOpacity style={styles.Sign} onPress={() => logout()}>
+            <Text>Log-Out</Text>
+          </TouchableOpacity>
+        ) : (
+          // 로그아웃된 경우
+          <TouchableOpacity style={styles.Sign} onPress={() => navigation.navigate('Signin')}>
             <Text>Log-In</Text>
           </TouchableOpacity>
-
+        )}
       </View>
 
     <View style={styles.menu}>
@@ -143,9 +182,18 @@ const HomeScreen = ({ navigation }) => {
         </View>
 
         <View style={styles.adContainer}>
-          <Image source={require('./images/ad1.png')} style={styles.adImage} resizeMode="contain" />
-          <Image source={require('./images/ad2.png')} style={styles.adImage} resizeMode="contain" />
-          <Image source={require('./images/ad3.png')} style={styles.adImage} resizeMode="contain" />
+        <TouchableOpacity onPress={()=>navigation.navigate('BoardEduTechDetail',{ EducationId: 'EducationId' })}>
+        <Image source={require('./images/ad1.png')} style={styles.adImage} resizeMode="contain" />
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={()=>navigation.navigate('BoardEduTechDetail2',{ EducationId2: 'EducationId2' })}>
+        <Image source={require('./images/ad2.png')} style={styles.adImage} resizeMode="contain" />
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={()=>navigation.navigate('BoardEduTechDetail3',{ EducationId3: 'EducationId3' })}>
+        <Image source={require('./images/ad3.png')} style={styles.adImage} resizeMode="contain" />
+        </TouchableOpacity>
+                   
         </View>
 
         <View style={styles.imageContainer}>
@@ -166,6 +214,7 @@ const HomeScreen = ({ navigation }) => {
       padding: 20,
     },
     // 수정사항(1128) - 이미지 배치에 관한 스타일 서식
+    // 화면의 끝 부분에서 바운스 현상 없이 원하는 곳까지 스크롤 할 수 있도록 설정
     contents: {
       flex: 1,
     },
@@ -243,35 +292,65 @@ const HomeScreen = ({ navigation }) => {
 
 const App = () => {
   return (
+    
     <NavigationContainer>
+
+      <AuthProvider>
+
       <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={HomeScreen} />
+
         <Stack.Screen name="Applogin" component={Applogin}/>
         <Stack.Screen name="Signin" component={Signin}/>
         <Stack.Screen name="Signup" component={Signup}/>
+
         <Stack.Screen name="Signupenterprise" component={Signupenterprise}/>
         <Stack.Screen name="Signupuser" component={Signupuser}/>
+
+        <Stack.Screen name="FindPW" component={FindPW}/>
+        <Stack.Screen name="ResetPW" component={ResetPW}/> 
+
         <Stack.Screen name="Company" component={Company} />
         <Stack.Screen name="Greeting" component={Greeting} />
+
         <Stack.Screen name="BoardHobby" component={BoardHobby} />
         <Stack.Screen name='BoardHobbyView' component={BoardHobbyView}/>
         <Stack.Screen name='BoardHobbyEdit' component={BoardHobbyEdit}/>
         <Stack.Screen name='BoardHobbyWrite' component={BoardHobbyWrite}/>
+
         <Stack.Screen name="BoardJob" component={BoardJob} />
         <Stack.Screen name="BoardJobDetail" component={BoardJobDetail} />
         <Stack.Screen name="BoardJobEdit" component={BoardJobEdit} />
         <Stack.Screen name="BoardJobWrite" component={BoardJobWrite} />
+
         <Stack.Screen name="BoardEduTech" component={BoardEduTech} />
+        <Stack.Screen name='BoardEduTechWrite' component={BoardEduTechWrite}/>
+
+        <Stack.Screen name="BoardEduTechDetail" component={BoardEduTechDetail} />
+        <Stack.Screen name='BoardEduTechEdit' component={BoardEduTechEdit}/>
+
+        <Stack.Screen name='BoardEduTechDetail2' component={BoardEduTechDetail2}/>
+        <Stack.Screen name='BoardEduTechEdit2' component={BoardEduTechEdit2}/>
+
+        <Stack.Screen name='BoardEduTechDetail3' component={BoardEduTechDetail3}/>
+        <Stack.Screen name='BoardEduTechEdit3' component={BoardEduTechEdit3}/>
+        
         <Stack.Screen name="BoardEduArt" component={BoardEduArt} />
-        <Stack.Screen name='BoardEduApply' component={BoardEduApply}/>
-        <Stack.Screen name='Education_Write1' component={Education_Write1}/>
-        <Stack.Screen name='Education_view1' component={Education_view1}/>
-        <Stack.Screen name='Education_edit1' component={Education_edit1}/>
-        <Stack.Screen name='Education_Write2' component={Education_Write2}/>
-        <Stack.Screen name='Education_view2' component={Education_view2}/>
-        <Stack.Screen name='Education_edit2' component={Education_edit2}/>
+        <Stack.Screen name='BoardEduArtWrite' component={BoardEduArtWrite}/>
+        <Stack.Screen name="BoardEduArtDetail" component={BoardEduArtDetail} />
+        <Stack.Screen name='BoardEduArtEdit' component={BoardEduArtEdit}/>
+        
+        
+        
+        
+        
+        
       </Stack.Navigator>
+
+      </AuthProvider>
+
     </NavigationContainer>
+    
   );
 };
 

@@ -1,46 +1,71 @@
-import React from 'react';
+import React ,{useState} from 'react';
 import { View, Text, TouchableOpacity, FlatList, StyleSheet, StatusBar } from 'react-native';
 import { Card } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
+import { useAuth } from './AuthContext';
 
 const BoardEduArt = () => {
 
-  const ArtData = [
-    { id: 1, title: '교육 게시판', content: '교육 관련 게시판 입니다.', image: '' },
-    // Add more data as needed
-  ];
+  const { isLoggedIn, userType } = useAuth();
   
 
+  const ArtData = [
+    { id: 1, title: '실용음악 교실', writer: '관리자', date: '2023.11.12', screen: 'BoardEduArtDetail' },
+  ];
+
+
+  // Card -> flatlist 하나로 게시글 여러개를 불러 올 수 있는 구조인지, 
+  // 어떤 방식으로 DB에서 데이터를 갖고오는지 몰라서 일단 제작후 방치
   const navigation = useNavigation();
+  const pageSize = 8; // 페이지당 보여질 게시글 수
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const paginatedArtData = ArtData.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+    
+  );
+
+  const totalPages = Math.ceil(ArtData.length / pageSize);
 
   const renderItem = ({ item }) => (
     <Card containerStyle={styles.card} key={item.id}>
-      <TouchableOpacity onPress={() => navigation.navigate('Education_view1', { Education_Id: item.id })}>
+      <TouchableOpacity onPress={() => navigation.navigate(item.screen, { ArtId: item.id })}>
         <Text style={styles.cardTitle}>{item.title}</Text>
-        <Text style={styles.cardContent}>{item.content}</Text>
+        <View style={styles.cardInfo}>
+          <Text style={styles.cardInfoText}>글쓴이: {item.writer}</Text>
+          <Text style={styles.cardInfoText}>작성일: {item.date}</Text>
+        </View>
       </TouchableOpacity>
     </Card>
   );
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+    }
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.boardTitle}>
 
           <View style={styles.buttonWrap}>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Education_Write1')}>
+          {isLoggedIn && (userType === 'admin') && (
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('BoardEduArtWrite')}>
               <Text style={styles.buttonText}>등록</Text>
             </TouchableOpacity>
+          )}
           </View>
 
           <View>
-            <Text style={styles.titleText}>교육게시판</Text>
+            <Text style={styles.titleText}>문화예술 교육 게시판</Text>
             <Text style={styles.subtitleText}>카테고리별 강의 홍보글 게시</Text>
           </View>
 
         <View style={styles.buttonWrap}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate('Applogin')}
+            onPress={() => navigation.navigate('Home')}
           >
             <Text style={styles.buttonText}>Home</Text>
           </TouchableOpacity>
@@ -52,8 +77,24 @@ const BoardEduArt = () => {
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
       />
-      
-      
+
+      <View style={styles.paginationContainer}>
+          
+          <TouchableOpacity
+            style={styles.paginationButton}
+            onPress={() => handlePageChange(currentPage - 1)}
+          >
+            <Text style={styles.buttonText}>이전</Text>
+          </TouchableOpacity>
+          <Text>{`페이지: ${currentPage} / ${totalPages}`}</Text>
+          <TouchableOpacity
+            style={styles.paginationButton}
+            onPress={() => handlePageChange(currentPage + 1)}
+          >
+            <Text style={styles.buttonText}>다음</Text>
+          </TouchableOpacity>
+        </View>
+
     </View>
   );
 };
@@ -75,10 +116,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     paddingBottom: 10,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   subtitleText: {
     fontSize: 16,
     color: 'black',
+    textAlign: 'center',
   },
   card: {
     borderRadius: 10,
@@ -90,7 +133,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
   },
-  cardContent: {
+  cardInfo: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  cardInfoText: {
     color: 'gray',
   },
   buttonWrap: {
@@ -105,6 +152,17 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     textAlign: 'center',
+  },
+  paginationContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  paginationButton: {
+    backgroundColor: '#4CAF50',
+    padding: 8,
+    borderRadius: 5,
   },
 });
 

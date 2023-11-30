@@ -1,3 +1,4 @@
+//BoardHobby.js
 import React, { useState, useEffect } from 'react';
 import {
   View,
@@ -10,8 +11,20 @@ import {
 } from 'react-native';
 import { Card } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
+import { useAuth } from './AuthContext';
 
-const BoardHobby = () => {
+const BoardHobby = ({ navigation: propNavigation }) => {
+  const { isLoggedIn, userType } = useAuth();
+  const handleWrite = () => {
+    // 작성 버튼 클릭 시 로직
+    if (isLoggedIn && (userType === 'admin' || userType === 'company'|| userType === 'user')) {
+      // 로그인 상태이고, 유저타입이 admin 또는 company인 경우에만 작성 가능
+      propNavigation.navigate('BoardHobbyWrite');
+    } else {
+      // 그 외의 경우에는 작성 권한이 없음을 알림
+      alert('작성 권한이 없습니다.');
+    }
+  };
   const HobbyData = [
     { id: 1, title: '밴드 동아리 구합니다.', writer: '무야호', date: '2021.1.16', count: 33 },
     // Add more data as needed
@@ -54,13 +67,17 @@ const BoardHobby = () => {
       <View style={styles.container}>
         <View style={styles.boardTitle}>
           <View style={styles.buttonWrap}>
+          {isLoggedIn && (userType === 'admin'||userType === 'user') && (
             <TouchableOpacity
-              style={styles.button}
-              onPress={() => navigation.navigate('BoardHobbyWrite')}
-            >
-              <Text style={styles.buttonText}>등록</Text>
-            </TouchableOpacity>
+            style={styles.button}
+            onPress={handleWrite}
+          >
+            <Text style={styles.buttonText}>등록</Text>
+          </TouchableOpacity>
+          )}
+            
           </View>
+
 
           <View>
             <Text style={styles.titleText}>자유게시판</Text>
@@ -70,7 +87,7 @@ const BoardHobby = () => {
           <View style={styles.buttonWrap}>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => navigation.navigate('Applogin')}
+              onPress={() => navigation.navigate('Home')}
             >
               <Text style={styles.buttonText}>Home</Text>
             </TouchableOpacity>
@@ -123,10 +140,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     paddingBottom: 10,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   subtitleText: {
     fontSize: 16,
     color: 'black',
+    textAlign: 'center',
   },
   card: {
     borderRadius: 10,

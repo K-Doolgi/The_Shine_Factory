@@ -153,6 +153,7 @@ const BoardJobWrite = () => {
           <View style={styles.boardViewWrap}>
             <View style={styles.boardView}>{renderContent()}</View>
           </View>
+          
       </View>
     </ScrollView>
 

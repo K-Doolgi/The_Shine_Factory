@@ -3,15 +3,53 @@
 // 수정 버튼을 누를 때, 일반 네비게이션이 아닌, 게시글을 구성하는 매개변수의 데이터를 수정 컴포넌트로 넘길 수 있게 수정
 // 백엔드와 연동이 되는 부분이여서, 엑스포만으로는 디버깅하기 어려운 부분이 있음
 // Import necessary dependencies
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, StatusBar, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, StatusBar, ScrollView, Alert} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useAuth } from './AuthContext';
+import BoardJob from './Board_Job';
 
-const BoardJobDetail = ({ route }) => {
+const BoardJobDetail = ({ route, navigation: propNavigation }) => {
   // Get the job details from the route params
   const { jobId } = route.params;
 
   const navigation = useNavigation();
+
+  const { isLoggedIn, userType } = useAuth();
+  const handleEdit = () => {
+    // 작성 버튼 클릭 시 로직
+    if (isLoggedIn && (userType === 'admin' || userType === 'company')) {
+      // 로그인 상태이고, 유저타입이 admin 또는 company인 경우에만 작성 가능
+      propNavigation.navigate('BoardJobEdit', { jobId: jobId });
+    } else {
+      // 그 외의 경우에는 작성 권한이 없음을 알림
+      alert('작성 권한이 없습니다.');
+    }
+  };
+  const [confirmDelete, setConfirmDelete] = useState(false);
+
+  const DeletePress = () => {
+    // 먼저 신청 여부를 묻는 경고창 띄우기
+    Alert.alert(
+      '게시글 삭제',
+      '이 게시글을 삭제하시겠습니까?',
+      [
+        {
+          text: '아니오',
+          style: 'cancel',
+        },
+        {
+          text: '예',
+          onPress: () => {
+            // 나중에 내용 삭제하는 매크로 추가해야함
+            navigation.navigate(BoardJob),
+            Alert.alert('게시글이 삭제되었습니다.');
+          },
+        },
+      ],
+      { cancelable: false }
+    );
+  };
 
   // Dummy data for job details (replace with actual data retrieval logic)
   const jobDetails = {
@@ -42,24 +80,24 @@ const BoardJobDetail = ({ route }) => {
     },
   };
 
-  const handleEditPress = () => {
-    // Navigate to the edit screen (BoardJobEdit)
-    navigation.navigate('BoardJobEdit', {
-      screen: 'BoardJobEdit',
-      params: { jobId },
-    });
-  };
-
   return (
-    <ScrollView>
+    
       <View style={styles.container}>
+        <ScrollView
+          contentContainerStyle={styles.scrollViewContent}
+          showsVerticalScrollIndicator={false}
+          bounces={false}
+        >
 
         <View style={styles.boardTitle}>
           
         <View style={styles.buttonWrap}>
-          <TouchableOpacity style={styles.button} onPress={handleEditPress}>
-            <Text style={styles.buttonText}>수정</Text>
+        {isLoggedIn && (userType === 'admin'||userType==='company') && (
+          <TouchableOpacity style={styles.button} onPress={handleEdit}>
+          <Text style={styles.buttonText}>수정</Text>
           </TouchableOpacity>
+        )}
+          
         </View>
             
             <View>
@@ -73,8 +111,6 @@ const BoardJobDetail = ({ route }) => {
           </TouchableOpacity>
         </View>
         </View>
-        
-        <View style={styles.boardViewWrap}>
         
           <View style={styles.boardView}>
             
@@ -131,12 +167,18 @@ const BoardJobDetail = ({ route }) => {
                 <Text style={styles.infoLabel}>대표자명</Text>
                 <Text style={styles.infoValue}>{jobDetails.companyInfo.CEO}</Text>
               </View>
+
             
           </View>
-        </View>
-        
+          {isLoggedIn && (userType === 'admin'||userType==='company') && (
+            <TouchableOpacity style={styles.deleteButton} onPress={DeletePress}>
+            <Text style={styles.buttonText}>삭제</Text>
+          </TouchableOpacity>
+          )}
+
+      </ScrollView>
       </View>
-    </ScrollView>
+    
     
   );
 };
@@ -147,6 +189,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#F0F0F0',
     paddingBottom: 30,
     paddingHorizontal: 20
+  },
+  scrollViewContent: {
+    flexGrow: 1,
   },
   boardTitle: {
     flexDirection: 'row',
@@ -208,6 +253,44 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     textAlign: 'center',
+  },
+  deleteButton: {
+    backgroundColor: '#4CAF50',
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 20,
+  },
+  confirmModal: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: [{ translateX: -50 }, { translateY: -50 }],
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'black',
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10,
+  },
+  confirmButton: {
+    flex: 1,
+    backgroundColor: 'green',
+    padding: 10,
+    borderRadius: 5,
+    marginRight: 5,
+    alignItems: 'center',
+  },
+  cancelButton: {
+    flex: 1,
+    backgroundColor: 'red',
+    padding: 10,
+    borderRadius: 5,
+    marginLeft: 5,
+    alignItems: 'center',
   },
 });
 

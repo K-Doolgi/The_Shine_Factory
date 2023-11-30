@@ -1,3 +1,6 @@
+// Board_Job.js
+// 수정사항(1130) - 유저타입에 따른 게시판 기능 권한 차등 부여
+// 취업 게시판 - 일반유저를 제외한, 관리자, 기업만 게시판에 작성 및 수정 가능
 import React, { useState } from 'react';
 import {
   View,
@@ -10,8 +13,20 @@ import {
 } from 'react-native';
 import { Card } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
+import { useAuth } from './AuthContext';
 
-const BoardJob = () => {
+const BoardJob = ({ navigation: propNavigation }) => {
+  const { isLoggedIn, userType } = useAuth();
+  const handleWrite = () => {
+    // 작성 버튼 클릭 시 로직
+    if (isLoggedIn && (userType === 'admin' || userType === 'company')) {
+      // 로그인 상태이고, 유저타입이 admin 또는 company인 경우에만 작성 가능
+      propNavigation.navigate('BoardJobWrite');
+    } else {
+      // 그 외의 경우에는 작성 권한이 없음을 알림
+      alert('작성 권한이 없습니다.');
+    }
+  };
   const jobData = [
     { id: 1, title: '구인합니다.', writer: '김이름', date: '2021.1.15', count: 33 },
     // Add more data as needed
@@ -26,6 +41,7 @@ const BoardJob = () => {
   const paginatedJobData = jobData.slice(
     (currentPage - 1) * pageSize,
     currentPage * pageSize
+    
   );
 
   const totalPages = Math.ceil(jobData.length / pageSize);
@@ -54,12 +70,15 @@ const BoardJob = () => {
       <View style={styles.container}>
         <View style={styles.boardTitle}>
           <View style={styles.buttonWrap}>
+          {isLoggedIn && (userType === 'admin'||userType==='company') && (
             <TouchableOpacity
-              style={styles.button}
-              onPress={() => navigation.navigate('BoardJobWrite')}
-            >
-              <Text style={styles.buttonText}>등록</Text>
-            </TouchableOpacity>
+            style={styles.button}
+            onPress={handleWrite}
+          >
+            <Text style={styles.buttonText}>등록</Text>
+          </TouchableOpacity>
+          )}
+            
           </View>
 
           <View>
@@ -70,7 +89,7 @@ const BoardJob = () => {
           <View style={styles.buttonWrap}>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => navigation.navigate('Applogin')}
+              onPress={() => navigation.navigate('Home')}
             >
               <Text style={styles.buttonText}>Home</Text>
             </TouchableOpacity>

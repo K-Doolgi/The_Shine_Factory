@@ -1,12 +1,30 @@
+// BoardHobbyView.js
 // 수정사항 (1128) - 디자인적인 개선과 양식 통일 위해 UI와 디자인 개편
+// 수정사항 (1130) - 로그인 API 기능 추가
+// 취미 -> 회원만 수정 및 작성할 수 있도록 권한 부여 (모든 유형의 회원)
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet, StatusBar, ScrollView, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useAuth } from './AuthContext';
+import BoardHobby from './BoardHobby';
 
-const BoardHobbyView = ({ route }) => {
+const BoardHobbyView = ({ route, navigation: propNavigation }) => {
   const { hobbyId } = route.params;
+
   const navigation = useNavigation();
 
+  const { isLoggedIn, userType } = useAuth();
+
+  const handleHobbyEdit = () => {
+    // 작성 버튼 클릭 시 로직
+    if (isLoggedIn && (userType === 'admin' || userType === 'company' || userType === 'user')) {
+      // 로그인 상태이고, 유저타입이 admin 또는 company, user인 경우에만 작성 가능
+      propNavigation.navigate('BoardHobbyEdit', { hobbyId: hobbyId });
+    } else {
+      // 그 외의 경우에는 작성 권한이 없음을 알림
+      alert('작성 권한이 없습니다.');
+    }
+  };
   const [confirmDelete, setConfirmDelete] = useState(false);
 
   const hobbyDetails = {
@@ -17,10 +35,6 @@ const BoardHobbyView = ({ route }) => {
     count: 33,
     image: require('./assets/images/photo1.jpg'),
     content: '밴드 동아리원을 모집합니다. 연습 시간은 매주 화, 목요일 오후 7시부터 9시까지입니다. 연락주세요!',
-  };
-
-  const handleEditPress = () => {
-    navigation.navigate('BoardHobbyEdit', { hobbyId });
   };
 
   // 수정사항(1128) - 삭제 버튼과 경고창 추가
@@ -36,17 +50,47 @@ const BoardHobbyView = ({ route }) => {
     // 추가로 필요한 작업 수행
   };
 
+  const DeletePress = () => {
+    // 먼저 신청 여부를 묻는 경고창 띄우기
+    Alert.alert(
+      '게시글 삭제',
+      '이 게시글을 삭제하시겠습니까?',
+      [
+        {
+          text: '아니오',
+          style: 'cancel',
+        },
+        {
+          text: '예',
+          onPress: () => {
+            // 나중에 내용 삭제하는 매크로 추가해야함
+            navigation.navigate(BoardHobby),
+            Alert.alert('게시글이 삭제되었습니다.');
+          },
+        },
+      ],
+      { cancelable: false }
+    );
+  };
+
   return (
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.boardTitle}>
-          <TouchableOpacity style={styles.editButton} onPress={handleEditPress}>
-            <Text style={styles.buttonText}>수정</Text>
+
+        <View>
+        {isLoggedIn && (userType === 'admin' || userType === 'user') && (
+          <TouchableOpacity style={styles.editButton} onPress={handleHobbyEdit}>
+          <Text style={styles.buttonText}>수정</Text>
           </TouchableOpacity>
+        )}
+        </View>
+
           <View>
             <Text style={styles.titleText}>자유게시판</Text>
             <Text style={styles.subtitleText}>동아리, 동호회 홍보글</Text>
           </View>
+
           <TouchableOpacity style={styles.editButton} onPress={() => navigation.navigate('BoardHobby')}>
             <Text style={styles.buttonText}>목록</Text>
           </TouchableOpacity>
@@ -74,13 +118,20 @@ const BoardHobbyView = ({ route }) => {
               </View>
             </View>
             <Image style={styles.image} source={hobbyDetails.image} />
+
             <Text style={styles.content}>{hobbyDetails.content}</Text>
+
           </View>
+
           {/* // 수정사항(1128) - 삭제 버튼과 경고창 추가
               // 삭제 버튼 클릭 시, 경고창이 뜨도록 제작 */}
-          <TouchableOpacity style={styles.deleteButton} onPress={() => setConfirmDelete(true)}>
+          {isLoggedIn && (userType === 'admin' || userType === 'user') && (
+            <TouchableOpacity style={styles.deleteButton} onPress={DeletePress}>
             <Text style={styles.buttonText}>삭제</Text>
-          </TouchableOpacity>
+            </TouchableOpacity>
+          )}    
+          
+
         </View>
 
         {confirmDelete && (
@@ -120,10 +171,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     paddingBottom: 10,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   subtitleText: {
     fontSize: 16,
     color: 'black',
+    textAlign: 'center',
   },
 
   boardViewWrap: {},

@@ -1,3 +1,4 @@
+//Applogin.js
 // 수정사항(1128) - 상단 메뉴의 구성 및 디자인 개편
 // 취미, 취업 게시판 분리, 프론트 디자인 png로 구성 (나중에 필요에 따라 교육홍보에 링크 걸 수 있음)
 import React, { useState } from 'react';
@@ -27,7 +28,7 @@ const Applogin = ({ navigation }) => {
 
       <View style={styles.title}>
 
-        <Text style={styles.titleText}>The Shine Factory</Text>
+        <Text style={styles.titleText}>The Shine Factory!</Text>
 
         <TouchableOpacity style={styles.Sign} onPress={() => navigation.navigate('Signin')}>
             <Text>Log-out</Text>
@@ -129,6 +130,8 @@ const Applogin = ({ navigation }) => {
     contents: {
       flex: 1,
     },
+    // 수정사항(1128) - 이미지 배치에 관한 스타일 서식
+    // 화면의 끝 부분에서 바운스 현상 없이 원하는 곳까지 스크롤 할 수 있도록 설정
     scrollViewContent: {
       flexGrow: 1,
     },
