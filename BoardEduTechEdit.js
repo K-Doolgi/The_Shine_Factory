@@ -163,7 +163,7 @@ const BoardEduTechEdit = () => {
           </TouchableOpacity>
 
           <View>
-            <Text style={styles.titleText}>교육 게시판</Text>
+            <Text style={styles.titleText}>전문 기술 과정 게시판</Text>
             <Text style={styles.subtitleText}>카테고리별 강의 홍보글 게시</Text>
           </View>
 

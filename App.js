@@ -14,6 +14,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 import { AuthProvider, useAuth } from './AuthContext';
 
+// 수정사항(1202) - 피드백을 토대로 게시판 구성요소 수정
+// 상위 메뉴와 하위 서브 메뉴는 디자인적으로는 상하 관계를 가지지만,
+// 변수 자체로 봤을 때는 상하위 상관없이 독립적으로 변수를 가짐 -> 새로 요구한 게시판만큼 새로 제작
+
 // import for About
 import Company from './Company';
 import Greeting from './Greeting';
@@ -35,6 +39,11 @@ import BoardEduTechEdit2 from './BoardEduTechEdit2';
 import BoardEduTechDetail3 from './BoardEduTechDetail3';
 import BoardEduTechEdit3 from './BoardEduTechEdit3';
 
+// import for Music Class
+import BoardEduMusic from './BoardEduMusic';
+import BoardEduMusicWrite from './BoardEduMusicWrite';
+import BoardEduMusicDetail from './BoardEduMusicDetail';
+import BoardEduMusicEdit from './BoardEduMusicEdit';
 
 // import for Art Class
 import BoardEduArt from './BoardEduArt';
@@ -42,18 +51,48 @@ import BoardEduArtWrite from './BoardEduArtWrite';
 import BoardEduArtDetail from './BoardEduArtDetail';
 import BoardEduArtEdit from './BoardEduArtEdit';
 
+// import for Gym Class
+import BoardEduGym from './BoardEduGym';
+import BoardEduGymWrite from './BoardEduGymWrite';
+import BoardEduGymDetail from './BoardEduGymDetail';
+import BoardEduGymEdit from './BoardEduGymEdit';
 
-// import for Job Board
-import BoardJob from './Board_Job';
-import BoardJobDetail from './BoardJobDetail';
-import BoardJobEdit from './BoardJobEdit';
-import BoardJobWrite from './BoardJobWrite';
+// import for Cul Class
+import BoardEduCul from './BoardEduCul';
+import BoardEduCulWrite from './BoardEduCulWrite';
+import BoardEduCulDetail from './BoardEduCulDetail';
+import BoardEduCulEdit from './BoardEduCulEdit';
 
 // import for Hobby Board
 import BoardHobby from './BoardHobby';
 import BoardHobbyView from './BoardHobbyView';
 import BoardHobbyEdit from './BoardHobbyEdit';
 import BoardHobbyWrite from './BoardHobbyWrite';
+
+// import for Job Board
+import BoardJob from './BoardJob';
+import BoardJobDetail from './BoardJobDetail';
+import BoardJobEdit from './BoardJobEdit';
+import BoardJobWrite from './BoardJobWrite';
+
+// import for Area Board
+import BoardArea from './BoardArea';
+import BoardAreaView from './BoardAreaView';
+import BoardAreaEdit from './BoardAreaEdit';
+import BoardAreaWrite from './BoardAreaWrite';
+
+// import for Per Board
+import BoardPer from './BoardPer';
+import BoardPerView from './BoardPerView';
+import BoardPerEdit from './BoardPerEdit';
+import BoardPerWrite from './BoardPerWrite';
+
+// import for Heal Board
+import BoardHeal from './BoardHeal';
+import BoardHealView from './BoardHealView';
+import BoardHealEdit from './BoardHealEdit';
+import BoardHealWrite from './BoardHealWrite';
+
 
 // import for Sign-in, Sign-up
 import Signin from './Signin';
@@ -77,17 +116,26 @@ const HomeScreen = ({ navigation }) => {
     console.log('isLoggedIn 상태:', isLoggedIn);
   }, [isLoggedIn]); // isLoggedIn이 변경될 때만 실행
   
-  const [showAboutSubMenu, setShowAboutSubMenu] = useState(false);
+  const [showCultureSubMenu, setShowCultureSubMenu] = useState(false);
   const [showEducationSubMenu, setShowEducationSubMenu] = useState(false);
+  const [showInformationSubMenu, setShowInformationSubMenu] = useState(false);
 
-  const toggleAboutSubMenu = () => {
-    setShowAboutSubMenu(!showAboutSubMenu);
+  const toggleCultureSubMenu = () => {
+    setShowCultureSubMenu(!showCultureSubMenu);
     setShowEducationSubMenu(false);
+    setShowInformationSubMenu(false);
   };
 
   const toggleEducationSubMenu = () => {
     setShowEducationSubMenu(!showEducationSubMenu);
-    setShowAboutSubMenu(false);
+    setShowCultureSubMenu(false);
+    setShowInformationSubMenu(false);
+  };
+
+  const toggleInformationSubMenu = () => {
+    setShowInformationSubMenu(!showInformationSubMenu);
+    setShowEducationSubMenu(false);
+    setShowCultureSubMenu(false);
   };
 
   return (
@@ -117,20 +165,28 @@ const HomeScreen = ({ navigation }) => {
         
       <View>
 
-          <TouchableOpacity onPress={toggleAboutSubMenu}>
-            <Text  style={styles.menuItem}>About</Text>
+          <TouchableOpacity onPress={toggleCultureSubMenu}>
+            <Text  style={styles.menuItem}>문화 예술</Text>
           </TouchableOpacity>
 
-          {showAboutSubMenu && (
+          {showCultureSubMenu && (
             <View>
-            <TouchableOpacity onPress={() => navigation.navigate('Company')}>
-              <Text style={styles.submenu}>The Shine Factory</Text>
-            </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('BoardEduMusic')}>
+                <Text  style={styles.submenu}>음악 교실</Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.navigate('Greeting')}>
-              <Text style={styles.submenu}>Greetnig</Text>
-            </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('BoardEduArt')}>
+                <Text  style={styles.submenu}>미술 교실</Text>
+              </TouchableOpacity>
 
+              <TouchableOpacity onPress={() => navigation.navigate('BoardEduGym')}>
+                <Text  style={styles.submenu}>운동 교실</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={() => navigation.navigate('BoardEduCul')}>
+                <Text  style={styles.submenu}>예술 교실</Text>
+              </TouchableOpacity>
+            
           </View>
           )}
 
@@ -139,18 +195,22 @@ const HomeScreen = ({ navigation }) => {
         <View>
 
           <TouchableOpacity onPress={toggleEducationSubMenu}>
-            <Text  style={styles.menuItem}>Education</Text>
+            <Text  style={styles.menuItem}>전문 기술</Text>
           </TouchableOpacity>
 
           {showEducationSubMenu && (
-            <View>
+            <View> 
 
-              <TouchableOpacity onPress={() => navigation.navigate('BoardEduTech')}>
-                <Text  style={styles.submenu}>Technology</Text>
+              <TouchableOpacity onPress={() => navigation.navigate('')}>
+                <Text  style={styles.submenu}>자격증 과정</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => navigation.navigate('BoardEduArt')}>
-                <Text  style={styles.submenu}>Art Class</Text>
+              <TouchableOpacity onPress={() => navigation.navigate('')}>
+                <Text  style={styles.submenu}>창업 과정</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={() => navigation.navigate('BoardEduTech')}>
+                <Text  style={styles.submenu}>전문 기술 과정</Text>
               </TouchableOpacity>
 
             </View>
@@ -159,15 +219,40 @@ const HomeScreen = ({ navigation }) => {
 
         <View>
           <TouchableOpacity onPress={() => navigation.navigate('BoardHobby')}>
-            <Text style={styles.menuItem}>Hobby</Text>
+            <Text style={styles.menuItem}>동호회</Text>
           </TouchableOpacity>
         </View>
-
+        
         <View>
-          <TouchableOpacity onPress={() => navigation.navigate('BoardJob')}>
-            <Text style={styles.menuItem}>Job</Text>
+
+          <TouchableOpacity onPress={toggleInformationSubMenu}>
+            <Text  style={styles.menuItem}>정보 게시판</Text>
           </TouchableOpacity>
+            
+          {showInformationSubMenu && (
+            <View>
+
+              <TouchableOpacity onPress={() => navigation.navigate('BoardJob')}>
+                <Text style={styles.submenu}>일자리 정보</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={() => navigation.navigate('BoardArea')}>
+                <Text style={styles.submenu}>지역별 여행</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={() => navigation.navigate('BoardPer')}>
+                <Text style={styles.submenu}>공연 및 전시회</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={() => navigation.navigate('BoardHeal')}>
+                <Text style={styles.submenu}>건강 정보</Text>
+              </TouchableOpacity>
+
+            </View>
+            )}
+
         </View>
+          
 
       </View>
 
@@ -313,16 +398,26 @@ const App = () => {
         <Stack.Screen name="Company" component={Company} />
         <Stack.Screen name="Greeting" component={Greeting} />
 
-        <Stack.Screen name="BoardHobby" component={BoardHobby} />
-        <Stack.Screen name='BoardHobbyView' component={BoardHobbyView}/>
-        <Stack.Screen name='BoardHobbyEdit' component={BoardHobbyEdit}/>
-        <Stack.Screen name='BoardHobbyWrite' component={BoardHobbyWrite}/>
+        <Stack.Screen name="BoardEduMusic" component={BoardEduMusic} />
+        <Stack.Screen name='BoardEduMusicWrite' component={BoardEduMusicWrite}/>
+        <Stack.Screen name="BoardEduMusicDetail" component={BoardEduMusicDetail} />
+        <Stack.Screen name='BoardEduMusicEdit' component={BoardEduMusicEdit}/>
 
-        <Stack.Screen name="BoardJob" component={BoardJob} />
-        <Stack.Screen name="BoardJobDetail" component={BoardJobDetail} />
-        <Stack.Screen name="BoardJobEdit" component={BoardJobEdit} />
-        <Stack.Screen name="BoardJobWrite" component={BoardJobWrite} />
+        <Stack.Screen name="BoardEduArt" component={BoardEduArt} />
+        <Stack.Screen name='BoardEduArtWrite' component={BoardEduArtWrite}/>
+        <Stack.Screen name="BoardEduArtDetail" component={BoardEduArtDetail} />
+        <Stack.Screen name='BoardEduArtEdit' component={BoardEduArtEdit}/>
 
+        <Stack.Screen name="BoardEduGym" component={BoardEduGym} />
+        <Stack.Screen name='BoardEduGymWrite' component={BoardEduGymWrite}/>
+        <Stack.Screen name="BoardEduGymDetail" component={BoardEduGymDetail} />
+        <Stack.Screen name='BoardEduGymEdit' component={BoardEduGymEdit}/>
+
+        <Stack.Screen name="BoardEduCul" component={BoardEduCul} />
+        <Stack.Screen name='BoardEduCulWrite' component={BoardEduCulWrite}/>
+        <Stack.Screen name="BoardEduCulDetail" component={BoardEduCulDetail} />
+        <Stack.Screen name='BoardEduCulEdit' component={BoardEduCulEdit}/>
+        
         <Stack.Screen name="BoardEduTech" component={BoardEduTech} />
         <Stack.Screen name='BoardEduTechWrite' component={BoardEduTechWrite}/>
 
@@ -334,17 +429,32 @@ const App = () => {
 
         <Stack.Screen name='BoardEduTechDetail3' component={BoardEduTechDetail3}/>
         <Stack.Screen name='BoardEduTechEdit3' component={BoardEduTechEdit3}/>
-        
-        <Stack.Screen name="BoardEduArt" component={BoardEduArt} />
-        <Stack.Screen name='BoardEduArtWrite' component={BoardEduArtWrite}/>
-        <Stack.Screen name="BoardEduArtDetail" component={BoardEduArtDetail} />
-        <Stack.Screen name='BoardEduArtEdit' component={BoardEduArtEdit}/>
-        
-        
-        
-        
-        
-        
+
+        <Stack.Screen name="BoardHobby" component={BoardHobby} />
+        <Stack.Screen name='BoardHobbyView' component={BoardHobbyView}/>
+        <Stack.Screen name='BoardHobbyEdit' component={BoardHobbyEdit}/>
+        <Stack.Screen name='BoardHobbyWrite' component={BoardHobbyWrite}/>
+
+        <Stack.Screen name="BoardJob" component={BoardJob} />
+        <Stack.Screen name="BoardJobDetail" component={BoardJobDetail} />
+        <Stack.Screen name="BoardJobEdit" component={BoardJobEdit} />
+        <Stack.Screen name="BoardJobWrite" component={BoardJobWrite} />
+
+        <Stack.Screen name="BoardArea" component={BoardArea} />
+        <Stack.Screen name='BoardAreaView' component={BoardAreaView}/>
+        <Stack.Screen name='BoardAreaEdit' component={BoardAreaEdit}/>
+        <Stack.Screen name='BoardAreaWrite' component={BoardAreaWrite}/>
+
+        <Stack.Screen name="BoardPer" component={BoardPer} />
+        <Stack.Screen name='BoardPerView' component={BoardPerView}/>
+        <Stack.Screen name='BoardPerEdit' component={BoardPerEdit}/>
+        <Stack.Screen name='BoardPerWrite' component={BoardPerWrite}/>
+
+        <Stack.Screen name="BoardHeal" component={BoardHeal} />
+        <Stack.Screen name='BoardHealView' component={BoardHealView}/>
+        <Stack.Screen name='BoardHealEdit' component={BoardHealEdit}/>
+        <Stack.Screen name='BoardHealWrite' component={BoardHealWrite}/>
+    
       </Stack.Navigator>
 
       </AuthProvider>

@@ -1,46 +1,62 @@
-import React ,{useState} from 'react';
-import { View, Text, TouchableOpacity, FlatList, StyleSheet, StatusBar } from 'react-native';
+//BoardPer.js
+import React, { useState, useEffect } from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  FlatList,
+  StyleSheet,
+  StatusBar,
+  ScrollView,
+} from 'react-native';
 import { Card } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from './AuthContext';
 
-const BoardEduTech = () => {
-
+const BoardPer = ({ navigation: propNavigation }) => {
   const { isLoggedIn, userType } = useAuth();
-  
-
-  const TechData = [
-    { id: 1, title: '3D 프린팅과 3D펜 교육', writer: '관리자', date: '2023.11.12', screen: 'BoardEduTechDetail' },
-    { id: 2, title: 'SW코딩교육', writer: '관리자', date: '2023.11.12', screen: 'BoardEduTechDetail2' },
-    { id: 3, title: '미디어콘텐츠개발 교육', writer: '관리자', date: '2023.11.12', screen: 'BoardEduTechDetail3' },
+  const handleWrite = () => {
+    // 작성 버튼 클릭 시 로직
+    if (isLoggedIn && (userType === 'admin' || userType === 'company'|| userType === 'user')) {
+      // 로그인 상태이고, 유저타입이 admin 또는 company인 경우에만 작성 가능
+      propNavigation.navigate('BoardPerWrite');
+    } else {
+      // 그 외의 경우에는 작성 권한이 없음을 알림
+      alert('작성 권한이 없습니다.');
+    }
+  };
+  const PerData = [
+    { id: 1, title: '밴드 동아리 구합니다.', writer: '무야호', date: '2021.1.16', count: 33 },
+    // Add more data as needed
   ];
 
-
-  // Card -> flatlist 하나로 게시글 여러개를 불러 올 수 있는 구조인지, 
-  // 어떤 방식으로 DB에서 데이터를 갖고오는지 몰라서 일단 제작후 방치
+  // 수정사항(1128) - 게시글 8개당 한페이지 씩 넘어가도록 구현
   const navigation = useNavigation();
   const pageSize = 8; // 페이지당 보여질 게시글 수
   const [currentPage, setCurrentPage] = useState(1);
 
-  const paginatedTechData = TechData.slice(
+  const paginatedPerData = PerData.slice(
     (currentPage - 1) * pageSize,
     currentPage * pageSize
-    
   );
 
-  const totalPages = Math.ceil(TechData.length / pageSize);
+  // 여기서도 게시글 데이터 호출을 어떤 방식으로 하는지 감이 안잡혀,
+  // 만들고 방치
+  const totalPages = Math.ceil(PerData.length / pageSize);
 
   const renderItem = ({ item }) => (
     <Card containerStyle={styles.card} key={item.id}>
-      <TouchableOpacity onPress={() => navigation.navigate(item.screen, { EducationId: item.id })}>
+      <TouchableOpacity onPress={() => navigation.navigate('BoardPerView', { PerId: item.id })}>
         <Text style={styles.cardTitle}>{item.title}</Text>
         <View style={styles.cardInfo}>
           <Text style={styles.cardInfoText}>글쓴이: {item.writer}</Text>
           <Text style={styles.cardInfoText}>작성일: {item.date}</Text>
+          <Text style={styles.cardInfoText}>조회: {item.count}</Text>
         </View>
       </TouchableOpacity>
     </Card>
   );
+
   const handlePageChange = (newPage) => {
     if (newPage >= 1 && newPage <= totalPages) {
       setCurrentPage(newPage);
@@ -48,39 +64,44 @@ const BoardEduTech = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.boardTitle}>
-
+      <View style={styles.container}>
+        <View style={styles.boardTitle}>
           <View style={styles.buttonWrap}>
-          {isLoggedIn && (userType === 'admin') && (
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('BoardEduTechWrite')}>
-              <Text style={styles.buttonText}>등록</Text>
-            </TouchableOpacity>
+          {isLoggedIn && (userType === 'admin'||userType === 'user') && (
+            <TouchableOpacity
+            style={styles.button}
+            onPress={handleWrite}
+          >
+            <Text style={styles.buttonText}>등록</Text>
+          </TouchableOpacity>
           )}
+            
           </View>
+
 
           <View>
-            <Text style={styles.titleText}>전문 기술 과정 게시판</Text>
-            <Text style={styles.subtitleText}>카테고리별 강의 홍보글 게시</Text>
+            <Text style={styles.titleText}>동호회 게시판</Text>
+            <Text style={styles.subtitleText}>동아리, 동호회 홍보글</Text>
           </View>
 
-        <View style={styles.buttonWrap}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate('Home')}
-          >
-            <Text style={styles.buttonText}>Home</Text>
-          </TouchableOpacity>
+          <View style={styles.buttonWrap}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate('Home')}
+            >
+              <Text style={styles.buttonText}>Home</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
 
-      <FlatList
-        data={TechData}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
-      />
+        {/* 수정사항(1128) - 게시글 8개당 한 페이지를 이뤄 넘길 수 있도록 수정 */}
+        <FlatList
+          data={paginatedPerData}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id.toString()}
+        />
 
-      <View style={styles.paginationContainer}>
+        <View style={styles.paginationContainer}>
           
           <TouchableOpacity
             style={styles.paginationButton}
@@ -88,7 +109,9 @@ const BoardEduTech = () => {
           >
             <Text style={styles.buttonText}>이전</Text>
           </TouchableOpacity>
+
           <Text>{`페이지: ${currentPage} / ${totalPages}`}</Text>
+
           <TouchableOpacity
             style={styles.paginationButton}
             onPress={() => handlePageChange(currentPage + 1)}
@@ -96,8 +119,7 @@ const BoardEduTech = () => {
             <Text style={styles.buttonText}>다음</Text>
           </TouchableOpacity>
         </View>
-
-    </View>
+      </View>
   );
 };
 
@@ -105,14 +127,14 @@ const styles = StyleSheet.create({
   container: {
     marginTop: StatusBar.currentHeight,
     backgroundColor: '#F0F0F0',
-    padding: 20,
+    padding: 10,
   },
   boardTitle: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     margin: 20,
-    paddingTop: 20
+    paddingTop: 20,
   },
   titleText: {
     fontSize: 24,
@@ -168,4 +190,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BoardEduTech;
+export default BoardPer;

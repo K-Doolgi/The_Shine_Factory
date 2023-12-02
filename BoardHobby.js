@@ -80,7 +80,7 @@ const BoardHobby = ({ navigation: propNavigation }) => {
 
 
           <View>
-            <Text style={styles.titleText}>자유게시판</Text>
+            <Text style={styles.titleText}>동호회 게시판</Text>
             <Text style={styles.subtitleText}>동아리, 동호회 홍보글</Text>
           </View>
 

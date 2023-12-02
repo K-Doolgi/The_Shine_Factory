@@ -76,8 +76,8 @@ const Signup = ({ navigation }) => {
         <TouchableOpacity onPress={() => navigation.navigate('Signin')}>
           <Text style={styles.headerText}>{"<"}</Text>
         </TouchableOpacity>
-        <Text style={styles.title}>Sign up {userType === 'user' ? '(User)' : '(Enterprise)'}</Text>
-        <Button title="Sign Up" onPress={handleSignup} />
+        <Text style={styles.title}>회원가입 {userType === 'user' ? '(일반인)' : '(기업전용)'}</Text>
+        <Button title="회원가입" onPress={handleSignup} />
       </View>
 
       <View style={styles.userTypeContainer}>
@@ -85,38 +85,38 @@ const Signup = ({ navigation }) => {
           style={[styles.userTypeButton, userType === 'user' && styles.selectedUserTypeButton]}
           onPress={() => setUserType('user')}
         >
-          <Text style={styles.userTypeButtonText}>User</Text>
+          <Text style={styles.userTypeButtonText}>일반인</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.userTypeButton, userType === 'enterprise' && styles.selectedUserTypeButton]}
           onPress={() => setUserType('enterprise')}
         >
-          <Text style={styles.userTypeButtonText}>Enterprise</Text>
+          <Text style={styles.userTypeButtonText}>기업전용</Text>
         </TouchableOpacity>
       </View>
 
 
       <TextInput
         style={styles.input}
-        placeholder="Name"
+        placeholder="이름을 입력하세요."
         value={name}
         onChangeText={setName}
       />
       <TextInput
         style={styles.input}
-        placeholder="Username"
+        placeholder="사용하실 닉네임을 입력하세요."
         value={username}
         onChangeText={setUsername}
       />
       <TextInput
         style={styles.input}
-        placeholder="ID"
+        placeholder="사용하실 아이디(이메일)을 입력해주세요."
         value={userID}
         onChangeText={setUserID}
       />
       <TextInput
         style={styles.input}
-        placeholder="Password"
+        placeholder="사용하실 비밀번호를 입력해주세요."
         secureTextEntry
         value={password}
         onChangeText={(text) => {
@@ -126,7 +126,7 @@ const Signup = ({ navigation }) => {
       />
       <TextInput
         style={styles.input}
-        placeholder="Confirm Password"
+        placeholder="비밀번호를 한번 더 입력해주세요."
         secureTextEntry
         value={confirmPassword}
         onChangeText={(text) => {
@@ -135,18 +135,18 @@ const Signup = ({ navigation }) => {
         }}
       />
       {!passwordsMatch && (
-        <Text style={styles.errorText}>Passwords do not match</Text>
+        <Text style={styles.errorText}>비밀번호가 일치하지 않습니다.</Text>
       )}
       <TextInput
           style={styles.input}
-          placeholder="Address"
+          placeholder="주소를 입력해주세요."
           value={address}
           onChangeText={setAddress}
         />
   
         <TextInput
           style={styles.input}
-          placeholder="Phone Number"
+          placeholder="전화번호를 입력해주세요 ('-' 포함)"
           keyboardType="phone-pad"
           value={phoneNumber}
           onChangeText={setPhoneNumber}
@@ -156,7 +156,7 @@ const Signup = ({ navigation }) => {
         onPress={() => setIsModalVisible(true)}
       >
         <Text style={styles.questionButtonText}>
-          {selectedQuestion || 'Select Security Question'}
+          {selectedQuestion || '사용하실 보안 질문을 선택해주세요.'}
         </Text>
       </TouchableOpacity>
 
@@ -188,7 +188,7 @@ const Signup = ({ navigation }) => {
 
       <TextInput
         style={styles.input}
-        placeholder="Security Answer"
+        placeholder="보안 질문에 대한 답을 입력해주세요."
         value={securityAnswer}
         onChangeText={setSecurityAnswer}
       />
@@ -196,7 +196,7 @@ const Signup = ({ navigation }) => {
       {userType === 'enterprise' && (
         <TextInput
           style={styles.input}
-          placeholder="Verification Code"
+          placeholder="발급 받으신 보안코드를 기입해주세요."
           value={verificationCode}
           onChangeText={setVerificationCode}
         />

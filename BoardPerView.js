@@ -1,4 +1,4 @@
-// BoardHobbyView.js
+// BoardPerView.js
 // 수정사항 (1128) - 디자인적인 개선과 양식 통일 위해 UI와 디자인 개편
 // 수정사항 (1130) - 로그인 API 기능 추가
 // 취미 -> 회원만 수정 및 작성할 수 있도록 권한 부여 (모든 유형의 회원)
@@ -6,20 +6,20 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet, StatusBar, ScrollView, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from './AuthContext';
-import BoardHobby from './BoardHobby';
+import BoardPer from './BoardPer';
 
-const BoardHobbyView = ({ route, navigation: propNavigation }) => {
-  const { hobbyId } = route.params;
+const BoardPerView = ({ route, navigation: propNavigation }) => {
+  const { PerId } = route.params;
 
   const navigation = useNavigation();
 
   const { isLoggedIn, userType } = useAuth();
 
-  const handleHobbyEdit = () => {
+  const handlePerEdit = () => {
     // 작성 버튼 클릭 시 로직
     if (isLoggedIn && (userType === 'admin' || userType === 'company' || userType === 'user')) {
       // 로그인 상태이고, 유저타입이 admin 또는 company, user인 경우에만 작성 가능
-      propNavigation.navigate('BoardHobbyEdit', { hobbyId: hobbyId });
+      propNavigation.navigate('BoardPerEdit', { PerId: PerId });
     } else {
       // 그 외의 경우에는 작성 권한이 없음을 알림
       alert('작성 권한이 없습니다.');
@@ -27,7 +27,7 @@ const BoardHobbyView = ({ route, navigation: propNavigation }) => {
   };
   const [confirmDelete, setConfirmDelete] = useState(false);
 
-  const hobbyDetails = {
+  const PerDetails = {
     id: 1,
     title: '밴드 동아리 구합니다.',
     writer: '무야호',
@@ -64,7 +64,7 @@ const BoardHobbyView = ({ route, navigation: propNavigation }) => {
           text: '예',
           onPress: () => {
             // 나중에 내용 삭제하는 매크로 추가해야함
-            navigation.navigate(BoardHobby),
+            navigation.navigate(BoardPer),
             Alert.alert('게시글이 삭제되었습니다.');
           },
         },
@@ -80,7 +80,7 @@ const BoardHobbyView = ({ route, navigation: propNavigation }) => {
 
         <View>
         {isLoggedIn && (userType === 'admin' || userType === 'user') && (
-          <TouchableOpacity style={styles.editButton} onPress={handleHobbyEdit}>
+          <TouchableOpacity style={styles.editButton} onPress={handlePerEdit}>
           <Text style={styles.buttonText}>수정</Text>
           </TouchableOpacity>
         )}
@@ -91,35 +91,35 @@ const BoardHobbyView = ({ route, navigation: propNavigation }) => {
             <Text style={styles.subtitleText}>동아리, 동호회 홍보글</Text>
           </View>
 
-          <TouchableOpacity style={styles.editButton} onPress={() => navigation.navigate('BoardHobby')}>
+          <TouchableOpacity style={styles.editButton} onPress={() => navigation.navigate('BoardPer')}>
             <Text style={styles.buttonText}>목록</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.boardViewWrap}>
           <View style={styles.boardView}>
-            <Text style={styles.title}>제목: {hobbyDetails.title}</Text>
+            <Text style={styles.title}>제목: {PerDetails.title}</Text>
             <View style={styles.info}>
               <View style={styles.infoItem}>
                 <Text style={styles.infoLabel}>번호</Text>
-                <Text style={styles.infoValue}>{hobbyDetails.id}</Text>
+                <Text style={styles.infoValue}>{PerDetails.id}</Text>
               </View>
               <View style={styles.infoItem}>
                 <Text style={styles.infoLabel}>글쓴이</Text>
-                <Text style={styles.infoValue}>{hobbyDetails.writer}</Text>
+                <Text style={styles.infoValue}>{PerDetails.writer}</Text>
               </View>
               <View style={styles.infoItem}>
                 <Text style={styles.infoLabel}>작성일</Text>
-                <Text style={styles.infoValue}>{hobbyDetails.date}</Text>
+                <Text style={styles.infoValue}>{PerDetails.date}</Text>
               </View>
               <View style={styles.infoItem}>
                 <Text style={styles.infoLabel}>조회</Text>
-                <Text style={styles.infoValue}>{hobbyDetails.count}</Text>
+                <Text style={styles.infoValue}>{PerDetails.count}</Text>
               </View>
             </View>
-            <Image style={styles.image} source={hobbyDetails.image} />
+            <Image style={styles.image} source={PerDetails.image} />
 
-            <Text style={styles.content}>{hobbyDetails.content}</Text>
+            <Text style={styles.content}>{PerDetails.content}</Text>
 
           </View>
 
@@ -273,4 +273,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BoardHobbyView;
+export default BoardPerView;

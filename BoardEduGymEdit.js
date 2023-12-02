@@ -11,24 +11,24 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const BoardEduArtEdit = () => {
+const BoardEduGymEdit = () => {
   const navigation = useNavigation();
 
-  const [isEditing, setIsEditing] = useState(true); // Start in editing mode
+  const [isEditing, setIsEditing] = useState(true); // StGym in editing mode
 
-  const Artdetail1 = {
+  const Gymdetail1 = {
     id: 1,
     title: '기초 미술 교실',
     writer: '관리자',
     date: '2023.11.12',
-    image: './images/art.jpg',
+    image: './images/gym.jpg',
     content: `
     창의력을 깨우는 기초 미술 교실에 여러분을 초대합니다! 
     다양한 미술 기법과 재료를 활용하여 자신만의 작품을 만들어보세요. 
     초보자도 쉽게 따라할 수 있는 친절한 설명과 함께, 미술의 즐거움을 느껴보세요. 
     지금 바로 신청하세요, 여러분의 창의적인 세상이 펼쳐집니다!
     `,
-    ArtInfo: {
+    GymInfo: {
       EduName: '기초 미술 교실',
       EduContent: '다양한 미술 기법을 활용한 작품 제작',
       establishmentDate: '2023.11.12',
@@ -38,14 +38,14 @@ const BoardEduArtEdit = () => {
   };
 
   // State variables to hold edited values
-  const [editedTitle, setEditedTitle] = useState(Artdetail1.title);
-  const [editedContent, setEditedContent] = useState(Artdetail1.content);
-  const [editedEduName, setEditedEduName] = useState(Artdetail1.ArtInfo.EduName);
-  const [editedEduContent, setEditedEduContent] = useState(Artdetail1.ArtInfo.EduContent);
-  const [editedEstablishmentDate, setEditedEstablishmentDate] = useState(Artdetail1.ArtInfo.establishmentDate);
-  const [editedApplyCount, setEditedApplyCount] = useState(Artdetail1.ArtInfo.ApplyCount);
-  const [editedTeacher, setEditedTeacher] = useState(Artdetail1.ArtInfo.Teacher);
-  const [editedImage, setEditedImage] = useState(Artdetail1.image);
+  const [editedTitle, setEditedTitle] = useState(Gymdetail1.title);
+  const [editedContent, setEditedContent] = useState(Gymdetail1.content);
+  const [editedEduName, setEditedEduName] = useState(Gymdetail1.GymInfo.EduName);
+  const [editedEduContent, setEditedEduContent] = useState(Gymdetail1.GymInfo.EduContent);
+  const [editedEstablishmentDate, setEditedEstablishmentDate] = useState(Gymdetail1.GymInfo.establishmentDate);
+  const [editedApplyCount, setEditedApplyCount] = useState(Gymdetail1.GymInfo.ApplyCount);
+  const [editedTeacher, setEditedTeacher] = useState(Gymdetail1.GymInfo.Teacher);
+  const [editedImage, setEditedImage] = useState(Gymdetail1.image);
 
   const handleCancelPress = () => {
     // Navigate back to the board without saving changes
@@ -242,4 +242,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BoardEduArtEdit;
+export default BoardEduGymEdit;

@@ -169,7 +169,7 @@ const BoardJobEdit = ({ route }) => {
           </TouchableOpacity>
 
         <View>
-          <Text style={styles.titleText}>취업 관련 게시판</Text>
+          <Text style={styles.titleText}>일자리 정보</Text>
           <Text style={styles.subtitleText}>구인 관련글 게시</Text>
         </View>
 

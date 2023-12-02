@@ -1,4 +1,4 @@
-// BoardHobbyWrite.js
+// BoardAreaWrite.js
 // 수정사항 (1128) - 디자인적인 개선과 양식 통일 위해 UI와 디자인 개편
 import React, { useState } from 'react';
 import {
@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const BoardHobbyWrite = () => {
+const BoardAreaWrite = () => {
   const navigation = useNavigation();
 
   const [isEditing, setIsEditing] = useState(true); // Start in editing mode
@@ -162,4 +162,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BoardHobbyWrite;
+export default BoardAreaWrite;

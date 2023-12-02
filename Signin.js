@@ -54,6 +54,7 @@ const Signin = ({ navigation }) => {
 
     // App.js로 로그인 상태 및 유저 타입 전달
     navigation.navigate('Home', { isLoggedIn: true, userType, name, username,address, phoneNumber });
+
     
     } else if (userId === 'company' && Password === 'company123') {
       console.log('Company 로그인 성공');
@@ -79,10 +80,10 @@ const Signin = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Sign in</Text>
+      <Text style={styles.title}>로그인</Text>
       <TextInput
         style={styles.input}
-        placeholder="Id"
+        placeholder="ID(E-mail)를 입력해 주세요."
         keyboardType="email-address"
         autoCapitalize="none"
         value={userId}
@@ -90,7 +91,7 @@ const Signin = ({ navigation }) => {
       />
       <TextInput
         style={styles.input}
-        placeholder="Password"
+        placeholder="비밀번호를 입력해 주세요."
         value={Password}
         onChangeText={setPassword}
         secureTextEntry
@@ -101,11 +102,11 @@ const Signin = ({ navigation }) => {
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => navigation.navigate('FindPW')}>
-        <Text style={styles.forgotPassword}>Forgot password?</Text>
+        <Text style={styles.forgotPassword}>비밀번호 찾기</Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
-        <Text style={styles.signUpLink}>Don't have an account? Sign Up</Text>
+        <Text style={styles.signUpLink}>회원가입 하기</Text>
       </TouchableOpacity>
     </View>
   );

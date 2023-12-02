@@ -53,9 +53,9 @@ const FindPW = () => {
       scrollEnabled={true}
     >
       <View>
-        <Text style={styles.title}>Find Password</Text>
+        <Text style={styles.title}>비밀번호 찾기</Text>
 
-        <Text style={styles.subtitle}>Select User Type:</Text>
+        <Text style={styles.subtitle}>회원님의 가입 유형을 선택해 주세요.</Text>
 
         {/* UserType 선택을 위한 드롭다운 메뉴 */}
         <View style={styles.buttonContainer}>
@@ -63,34 +63,34 @@ const FindPW = () => {
             style={[styles.button, userType === 'user' && styles.selectedButton]}
             onPress={() => setUserType('user')}
           >
-            <Text style={[styles.buttonText, userType === 'user' && styles.selectedButtonText]}>User</Text>
+            <Text style={[styles.buttonText, userType === 'user' && styles.selectedButtonText]}>일반인</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.button, userType === 'enterprise' && styles.selectedButton]}
             onPress={() => setUserType('enterprise')}
           >
-            <Text style={[styles.buttonText, userType === 'enterprise' && styles.selectedButtonText]}>Enterprise</Text>
+            <Text style={[styles.buttonText, userType === 'enterprise' && styles.selectedButtonText]}>기업 전용</Text>
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.subtitle}>{`Enter details to find ${userType === 'user' ? 'user' : 'enterprise'} password`}</Text>
+        <Text style={styles.subtitle}>{`비밀번호를 찾을 ${userType === 'user' ? '일반인' : '기업 전용'} 유형의 계정의 정보를 입력해 주세요.`}</Text>
 
         {/* 텍스트 입력창을 가운데 정렬하고 같은 크기로 통일 */}
         <TextInput
           style={styles.input}
-          placeholder="Name"
+          placeholder="이름을 입력해주세요."
           value={name}
           onChangeText={setName}
         />
         <TextInput
           style={styles.input}
-          placeholder="Username"
+          placeholder="닉네임을 입력해주세요."
           value={username}
           onChangeText={setUsername}
         />
         <TextInput
           style={styles.input}
-          placeholder="ID"
+          placeholder="ID (E-mail)를 입력해주세요."
           value={userID}
           onChangeText={setUserID}
         />
@@ -99,12 +99,12 @@ const FindPW = () => {
           onPress={() => setIsModalVisible(true)}
         >
           <Text style={styles.questionButtonText}>
-            {selectedQuestion || 'Select Security Question'}
+            {selectedQuestion || '등록하신 보안 질문을 선택해 주세요.'}
           </Text>
         </TouchableOpacity>
         <TextInput
           style={styles.input}
-          placeholder="Security Answer"
+          placeholder="보안 질문의 답을 입력해 주세요."
           value={securityAnswer}
           onChangeText={setSecurityAnswer}
         />
@@ -138,7 +138,7 @@ const FindPW = () => {
         </Modal>
 
         {/* 비밀번호 찾기 버튼 */}
-        <Button title="Find Password" onPress={handleFindPassword} />
+        <Button title="비밀번호 찾기" onPress={handleFindPassword} />
 
       </View>
     </KeyboardAwareScrollView>
@@ -154,11 +154,14 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
+    fontWeight: 'bold',
     marginBottom: 16,
+    textAlign:'center',
   },
   subtitle: {
     fontSize: 16,
     marginBottom: 8,
+    textAlign:'center',
   },
   input: {
     height: 40,

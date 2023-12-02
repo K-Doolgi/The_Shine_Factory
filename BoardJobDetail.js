@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, StatusBar, ScrollView, Alert} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from './AuthContext';
-import BoardJob from './Board_Job';
+import BoardJob from './BoardJob';
 
 const BoardJobDetail = ({ route, navigation: propNavigation }) => {
   // Get the job details from the route params
@@ -101,7 +101,7 @@ const BoardJobDetail = ({ route, navigation: propNavigation }) => {
         </View>
             
             <View>
-              <Text style={styles.titleText}>취업 관련 게시판</Text>
+              <Text style={styles.titleText}>일자리 정보</Text>
               <Text style={styles.subtitleText}>구인 관련글 게시</Text>
             </View>
             

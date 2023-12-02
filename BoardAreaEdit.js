@@ -11,22 +11,22 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const BoardHobbyEdit = ({ route }) => {
-  const { hobbyId } = route.params;
+const BoardAreaEdit = ({ route }) => {
+  const { AreaId } = route.params;
   const navigation = useNavigation();
 
   const [isEditing, setIsEditing] = useState(true);
 
-  const hobbyDetails = {
+  const AreaDetails = {
     id: 1,
     title: '밴드 동아리 구합니다',
     content: '밴드 동아리원을 모집합니다. 연습 시간은 매주 화, 목요일 오후 7시부터 9시까지입니다. 연락주세요!',
     image: 'https://example.com/band_image.jpg',
   };
 
-  const [editedTitle, setEditedTitle] = useState(hobbyDetails.title);
-  const [editedContent, setEditedContent] = useState(hobbyDetails.content);
-  const [editedImage, setEditedImage] = useState(hobbyDetails.image);
+  const [editedTitle, setEditedTitle] = useState(AreaDetails.title);
+  const [editedContent, setEditedContent] = useState(AreaDetails.content);
+  const [editedImage, setEditedImage] = useState(AreaDetails.image);
 
   const handleCancelPress = () => {
     setIsEditing(false);
@@ -161,4 +161,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BoardHobbyEdit;
+export default BoardAreaEdit;

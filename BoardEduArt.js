@@ -10,7 +10,7 @@ const BoardEduArt = () => {
   
 
   const ArtData = [
-    { id: 1, title: '실용음악 교실', writer: '관리자', date: '2023.11.12', screen: 'BoardEduArtDetail' },
+    { id: 1, title: '기초 미술 교실', writer: '관리자', date: '2023.11.12', screen: 'BoardEduArtDetail' },
   ];
 
 
@@ -58,7 +58,7 @@ const BoardEduArt = () => {
           </View>
 
           <View>
-            <Text style={styles.titleText}>문화예술 교육 게시판</Text>
+            <Text style={styles.titleText}>미술 교육 게시판</Text>
             <Text style={styles.subtitleText}>카테고리별 강의 홍보글 게시</Text>
           </View>
 

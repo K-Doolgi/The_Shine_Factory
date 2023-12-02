@@ -4,15 +4,13 @@ import { Card } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from './AuthContext';
 
-const BoardEduTech = () => {
+const BoardEduGym = () => {
 
   const { isLoggedIn, userType } = useAuth();
   
 
-  const TechData = [
-    { id: 1, title: '3D 프린팅과 3D펜 교육', writer: '관리자', date: '2023.11.12', screen: 'BoardEduTechDetail' },
-    { id: 2, title: 'SW코딩교육', writer: '관리자', date: '2023.11.12', screen: 'BoardEduTechDetail2' },
-    { id: 3, title: '미디어콘텐츠개발 교육', writer: '관리자', date: '2023.11.12', screen: 'BoardEduTechDetail3' },
+  const GymData = [
+    { id: 1, title: '기초 미술 교실', writer: '관리자', date: '2023.11.12', screen: 'BoardEduGymDetail' },
   ];
 
 
@@ -22,17 +20,17 @@ const BoardEduTech = () => {
   const pageSize = 8; // 페이지당 보여질 게시글 수
   const [currentPage, setCurrentPage] = useState(1);
 
-  const paginatedTechData = TechData.slice(
+  const paginatedGymData = GymData.slice(
     (currentPage - 1) * pageSize,
     currentPage * pageSize
     
   );
 
-  const totalPages = Math.ceil(TechData.length / pageSize);
+  const totalPages = Math.ceil(GymData.length / pageSize);
 
   const renderItem = ({ item }) => (
     <Card containerStyle={styles.card} key={item.id}>
-      <TouchableOpacity onPress={() => navigation.navigate(item.screen, { EducationId: item.id })}>
+      <TouchableOpacity onPress={() => navigation.navigate(item.screen, { GymId: item.id })}>
         <Text style={styles.cardTitle}>{item.title}</Text>
         <View style={styles.cardInfo}>
           <Text style={styles.cardInfoText}>글쓴이: {item.writer}</Text>
@@ -53,14 +51,14 @@ const BoardEduTech = () => {
 
           <View style={styles.buttonWrap}>
           {isLoggedIn && (userType === 'admin') && (
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('BoardEduTechWrite')}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('BoardEduGymWrite')}>
               <Text style={styles.buttonText}>등록</Text>
             </TouchableOpacity>
           )}
           </View>
 
           <View>
-            <Text style={styles.titleText}>전문 기술 과정 게시판</Text>
+            <Text style={styles.titleText}>미술 교육 게시판</Text>
             <Text style={styles.subtitleText}>카테고리별 강의 홍보글 게시</Text>
           </View>
 
@@ -75,7 +73,7 @@ const BoardEduTech = () => {
       </View>
 
       <FlatList
-        data={TechData}
+        data={GymData}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
       />
@@ -168,4 +166,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BoardEduTech;
+export default BoardEduGym;

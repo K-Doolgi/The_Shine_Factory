@@ -37,18 +37,18 @@ const ResetPW = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Reset Password</Text>
+      <Text style={styles.title}>비밀번호 재설정</Text>
 
       <TextInput
         style={styles.input}
-        placeholder="New Password"
+        placeholder="새로운 비밀번호를 입력해 주세요."
         secureTextEntry
         value={newPassword}
         onChangeText={setNewPassword}
       />
       <TextInput
         style={styles.input}
-        placeholder="Confirm New Password"
+        placeholder="새로운 비밀번호를 한번 더 입력해 주세요."
         secureTextEntry
         value={confirmNewPassword}
         onChangeText={setConfirmNewPassword}
@@ -56,10 +56,10 @@ const ResetPW = ({ navigation }) => {
 
       {/* 비밀번호가 다를 때 안내 메시지 표시 */}
       {passwordMismatch && (
-        <Text style={styles.errorText}>Passwords do not match.</Text>
+        <Text style={styles.errorText}>비밀번호가 일치하지 않습니다.</Text>
       )}
 
-      <Button title="Reset Password" onPress={handleResetPassword} />
+      <Button title="비밀번호 재설정" onPress={handleResetPassword} />
     </View>
   );
 };
@@ -73,7 +73,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
+    fontWeight: 'bold',
     marginBottom: 16,
+    textAlign: 'center',
   },
   input: {
     height: 40,
