@@ -29,12 +29,11 @@ const BoardHealView = ({ route, navigation: propNavigation }) => {
 
   const HealDetails = {
     id: 1,
-    title: '밴드 동아리 구합니다.',
-    writer: '무야호',
-    date: '2021.1.16',
-    count: 33,
-    image: require('./assets/images/photo1.jpg'),
-    content: '밴드 동아리원을 모집합니다. 연습 시간은 매주 화, 목요일 오후 7시부터 9시까지입니다. 연락주세요!',
+    title: '오늘의 건강 상식 (23/12/04)',
+    writer: '관리자',
+    date: '2023.12.04',
+    content: '물은 우리 몸의 필수적인 영양소입니다. 하루에 최소 8잔(2리터)의 물을 섭취하는 것이 건강에 도움이 됩니다. 물은 체내 독소를 제거하고, 피부를 건강하게 유지하며, 신체의 온도를 조절하는데 필요합니다. 또한, 물은 소화기능과 뇌 기능을 개선하며, 기분을 좋게 만드는 데도 도움이 됩니다. 건강을 위해 충분한 수분 섭취를 잊지 마세요.',
+    image: require('./images/Heal.jpg'),
   };
 
   // 수정사항(1128) - 삭제 버튼과 경고창 추가
@@ -87,8 +86,8 @@ const BoardHealView = ({ route, navigation: propNavigation }) => {
         </View>
 
           <View>
-            <Text style={styles.titleText}>동호회 게시판</Text>
-            <Text style={styles.subtitleText}>동아리, 동호회 홍보글</Text>
+            <Text style={styles.titleText}>건강 정보 게시판</Text>
+            <Text style={styles.subtitleText}>카테고리별 지역 정보글 게시</Text>
           </View>
 
           <TouchableOpacity style={styles.editButton} onPress={() => navigation.navigate('BoardHeal')}>
@@ -111,10 +110,6 @@ const BoardHealView = ({ route, navigation: propNavigation }) => {
               <View style={styles.infoItem}>
                 <Text style={styles.infoLabel}>작성일</Text>
                 <Text style={styles.infoValue}>{HealDetails.date}</Text>
-              </View>
-              <View style={styles.infoItem}>
-                <Text style={styles.infoLabel}>조회</Text>
-                <Text style={styles.infoValue}>{HealDetails.count}</Text>
               </View>
             </View>
             <Image style={styles.image} source={HealDetails.image} />

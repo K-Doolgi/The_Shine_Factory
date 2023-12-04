@@ -8,7 +8,7 @@
 // 이 기능을 이용해서 계정별 게시판 이용권한 조정 예정
 // App.js
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, StatusBar, Image, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, StatusBar, Image, ScrollView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
@@ -18,14 +18,20 @@ import { AuthProvider, useAuth } from './AuthContext';
 // 상위 메뉴와 하위 서브 메뉴는 디자인적으로는 상하 관계를 가지지만,
 // 변수 자체로 봤을 때는 상하위 상관없이 독립적으로 변수를 가짐 -> 새로 요구한 게시판만큼 새로 제작
 
-// import for About
-import Company from './Company';
-import Greeting from './Greeting';
+// import for Education
+// import for Certificate
+import BoardEduCer from './BoardEduCer';
+import BoardEduCerWrite from './BoardEduCerWrite';
+import BoardEduCerDetail from './BoardEduCerDetail';
+import BoardEduCerEdit from './BoardEduCerEdit';
 
-// import for Applogin
-import Applogin from './Applogin';
+// import for Company
+import BoardEduCom from './BoardEduCom';
+import BoardEduComWrite from './BoardEduComWrite';
+import BoardEduComDetail from './BoardEduComDetail';
+import BoardEduComEdit from './BoardEduComEdit';
 
-//import for Education
+// import for Tech
 import BoardEduTech from './BoardEduTech';
 
 import BoardEduTechWrite from './BoardEduTechWrite';
@@ -97,8 +103,6 @@ import BoardHealWrite from './BoardHealWrite';
 // import for Sign-in, Sign-up
 import Signin from './Signin';
 import Signup from './Signup';
-import Signupuser from './Signupuser';
-import Signupenterprise from './Signupenterprise';
 import FindPW from './FindPW';
 import ResetPW from './ResetPW';
 
@@ -137,36 +141,40 @@ const HomeScreen = ({ navigation }) => {
     setShowEducationSubMenu(false);
     setShowCultureSubMenu(false);
   };
+  
 
   return (
+    <SafeAreaView style={styles.statusbar}>
     <View style={styles.container}>
 
       <View style={styles.title}>
 
-      <Text style={styles.titleText}>The Shine Factory</Text>
+        <Image source={require('./images/brand.jpg')} style={styles.Imagetitle} resizeMode="contain" />
         
-        
-        
-        
+        <View>
         {isLoggedIn ? (
-          // 로그인된 경우
-          <TouchableOpacity style={styles.Sign} onPress={() => logout()}>
-            <Text>Log-Out</Text>
-          </TouchableOpacity>
-        ) : (
-          // 로그아웃된 경우
-          <TouchableOpacity style={styles.Sign} onPress={() => navigation.navigate('Signin')}>
-            <Text>Log-In</Text>
-          </TouchableOpacity>
-        )}
+              // 로그인된 경우
+              <TouchableOpacity style={styles.Sign} onPress={() => logout()}>
+                <Text>Log-Out</Text>
+              </TouchableOpacity>
+            ) : (
+              // 로그아웃된 경우
+              <TouchableOpacity style={styles.Sign} onPress={() => navigation.navigate('Signin')}>
+                <Text>Log-In</Text>
+              </TouchableOpacity>
+            )}
+        </View>
+          
+
       </View>
+
 
     <View style={styles.menu}>
         
       <View>
 
           <TouchableOpacity onPress={toggleCultureSubMenu}>
-            <Text  style={styles.menuItem}>문화 예술</Text>
+          <Image source={require('./images/culture.jpg')} style={styles.Imageicon} resizeMode="contain" />
           </TouchableOpacity>
 
           {showCultureSubMenu && (
@@ -195,17 +203,17 @@ const HomeScreen = ({ navigation }) => {
         <View>
 
           <TouchableOpacity onPress={toggleEducationSubMenu}>
-            <Text  style={styles.menuItem}>전문 기술</Text>
+          <Image source={require('./images/education.jpg')} style={styles.Imageicon} resizeMode="contain" />
           </TouchableOpacity>
 
           {showEducationSubMenu && (
             <View> 
 
-              <TouchableOpacity onPress={() => navigation.navigate('')}>
+              <TouchableOpacity onPress={() => navigation.navigate('BoardEduCer')}>
                 <Text  style={styles.submenu}>자격증 과정</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => navigation.navigate('')}>
+              <TouchableOpacity onPress={() => navigation.navigate('BoardEduCom')}>
                 <Text  style={styles.submenu}>창업 과정</Text>
               </TouchableOpacity>
 
@@ -218,15 +226,9 @@ const HomeScreen = ({ navigation }) => {
         </View>
 
         <View>
-          <TouchableOpacity onPress={() => navigation.navigate('BoardHobby')}>
-            <Text style={styles.menuItem}>동호회</Text>
-          </TouchableOpacity>
-        </View>
-        
-        <View>
 
           <TouchableOpacity onPress={toggleInformationSubMenu}>
-            <Text  style={styles.menuItem}>정보 게시판</Text>
+          <Image source={require('./images/information.jpg')} style={styles.Imageicon} resizeMode="contain" />
           </TouchableOpacity>
             
           {showInformationSubMenu && (
@@ -246,6 +248,10 @@ const HomeScreen = ({ navigation }) => {
 
               <TouchableOpacity onPress={() => navigation.navigate('BoardHeal')}>
                 <Text style={styles.submenu}>건강 정보</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={() => navigation.navigate('BoardHobby')}>
+                <Text style={styles.submenu}>동호회</Text>
               </TouchableOpacity>
 
             </View>
@@ -288,15 +294,22 @@ const HomeScreen = ({ navigation }) => {
     </View>
 
     </View>
+    </SafeAreaView>
   );
 };
 
   const styles = StyleSheet.create({
+    statusbar: {
+      flex: 1,
+      marginTop: StatusBar.currentHeight,
+      backgroundColor: '#000000',
+    },
     container: {
       flex: 1,
       marginTop: StatusBar.currentHeight,
-      backgroundColor: 'white',
-      padding: 20,
+      backgroundColor: '#ffffff',
+      
+      padding: 12,
     },
     // 수정사항(1128) - 이미지 배치에 관한 스타일 서식
     // 화면의 끝 부분에서 바운스 현상 없이 원하는 곳까지 스크롤 할 수 있도록 설정
@@ -309,6 +322,19 @@ const HomeScreen = ({ navigation }) => {
     imageContainer: {
       width: '100%',
       aspectRatio: 16 / 9,
+    },
+    Imagetitle: {
+      flex: 1,
+      width: 110,
+      height: 50,
+      marginRight: 100,
+      
+    },
+    Imageicon: {
+      width: 115,
+      height: 110,
+      aspectRatio: 1 / 1,
+      marginHorizontal: 2,
     },
     Image: {
       flex: 1,
@@ -335,9 +361,7 @@ const HomeScreen = ({ navigation }) => {
     // 수정사항(1128) - 이미지 파일에 대한 스타일 서식 fin.
 
   title: {
-    fontSize: 24,
-    paddingBottom: 20,
-    paddingTop: 20,
+    paddingVertical: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
     
@@ -385,18 +409,11 @@ const App = () => {
       <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={HomeScreen} />
 
-        <Stack.Screen name="Applogin" component={Applogin}/>
         <Stack.Screen name="Signin" component={Signin}/>
         <Stack.Screen name="Signup" component={Signup}/>
 
-        <Stack.Screen name="Signupenterprise" component={Signupenterprise}/>
-        <Stack.Screen name="Signupuser" component={Signupuser}/>
-
         <Stack.Screen name="FindPW" component={FindPW}/>
         <Stack.Screen name="ResetPW" component={ResetPW}/> 
-
-        <Stack.Screen name="Company" component={Company} />
-        <Stack.Screen name="Greeting" component={Greeting} />
 
         <Stack.Screen name="BoardEduMusic" component={BoardEduMusic} />
         <Stack.Screen name='BoardEduMusicWrite' component={BoardEduMusicWrite}/>
@@ -417,6 +434,16 @@ const App = () => {
         <Stack.Screen name='BoardEduCulWrite' component={BoardEduCulWrite}/>
         <Stack.Screen name="BoardEduCulDetail" component={BoardEduCulDetail} />
         <Stack.Screen name='BoardEduCulEdit' component={BoardEduCulEdit}/>
+
+        <Stack.Screen name="BoardEduCer" component={BoardEduCer} />
+        <Stack.Screen name='BoardEduCerWrite' component={BoardEduCerWrite}/>
+        <Stack.Screen name="BoardEduCerDetail" component={BoardEduCerDetail} />
+        <Stack.Screen name='BoardEduCerEdit' component={BoardEduCerEdit}/>
+
+        <Stack.Screen name="BoardEduCom" component={BoardEduCom} />
+        <Stack.Screen name='BoardEduComWrite' component={BoardEduComWrite}/>
+        <Stack.Screen name="BoardEduComDetail" component={BoardEduComDetail} />
+        <Stack.Screen name='BoardEduComEdit' component={BoardEduComEdit}/>
         
         <Stack.Screen name="BoardEduTech" component={BoardEduTech} />
         <Stack.Screen name='BoardEduTechWrite' component={BoardEduTechWrite}/>

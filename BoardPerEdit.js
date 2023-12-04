@@ -19,9 +19,9 @@ const BoardPerEdit = ({ route }) => {
 
   const PerDetails = {
     id: 1,
-    title: '밴드 동아리 구합니다',
-    content: '밴드 동아리원을 모집합니다. 연습 시간은 매주 화, 목요일 오후 7시부터 9시까지입니다. 연락주세요!',
-    image: 'https://example.com/band_image.jpg',
+    title: '호두까기 인형',
+    content: '호두까기 인형은 러시아 작곡가 차이코프스키의 대표작 중 하나로, 아름다운 음악과 화려한 무대로 관객을 매료시키는 연극입니다. 이야기는 크리스마스 이브에, 클라라라는 소녀가 받은 호두까기 인형이 마법에 의해 살아나는 모험을 그립니다. 판타지와 로맨스, 모험이 공존하는 신비로운 이야기를 통해 감동과 즐거움을 선사합니다. 호두까기 인형과 함께 아름다운 꿈을 꾸러 오세요!',
+    image: './images/Per.jpg',
   };
 
   const [editedTitle, setEditedTitle] = useState(PerDetails.title);
@@ -52,8 +52,8 @@ const BoardPerEdit = ({ route }) => {
           </TouchableOpacity>
 
           <View>
-            <Text style={styles.titleText}>동호회 게시판</Text>
-            <Text style={styles.subtitleText}>동아리, 동호회 홍보글</Text>
+            <Text style={styles.titleText}>공연 및 전시회 정보</Text>
+            <Text style={styles.subtitleText}>카테고리별 지역 정보글 게시</Text>
           </View>
 
           <TouchableOpacity style={styles.button} onPress={handleCancelPress}>

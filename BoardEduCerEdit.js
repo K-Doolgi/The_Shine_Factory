@@ -11,26 +11,26 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const BoardEduCulEdit = () => {
+const BoardEduCerEdit = () => {
   const navigation = useNavigation();
 
   const [isEditing, setIsEditing] = useState(true); // Start in editing mode
 
-  const Culdetail1 = {
+  const Cerdetail1 = {
     id: 1,
-    title: '기초 연극 교실',
+    title: '컴활 2급 자격증 과정 교육',
     writer: '관리자',
     date: '2023.11.12',
-    image: './images/Cul.jpg',
+    image: require('./images/Cer.jpg'),
     content: `
-    기초 연극 교실에서 여러분의 숨겨진 재능을 발견해보세요! 
-    전문강사의 지도 하에 연기의 기본을 배우고, 자신만의 캐릭터를 만들어봅니다. 
-    연극을 통해 자신감을 키우고, 새로운 친구들과 함께 창작의 즐거움을 느껴보세요. 
-    기초 연극 교실에서 여러분의 무대를 준비하세요!
+    컴활 2급 자격증 과정 교육에 참여하시어 디지털 세상에 더욱 능숙하게 대처하세요! 
+    전문 강사의 체계적인 교육과 실전 문제 풀이로 실력을 키우세요. 
+    컴퓨터 활용능력 2급 자격증으로 취업 경쟁력을 한 단계 높여보세요. 
+    지금 바로 컴활 2급 자격증 과정에 참여하고, 더 넓은 세상을 경험하세요!
     `,
-    CulInfo: {
-      EduName: '기초 연극 교실',
-      EduContent: '연극 연출을 위한 감정 표현법 및 기초 연출 연구',
+    CerInfo: {
+      EduName: '컴활 2급 자격증 과정 교육',
+      EduContent: '컴활 2급 자격증 과정 단기 속성 교육',
       establishmentDate: '2023.11.12',
       ApplyCount: '00명',
       Teacher: '강사명',
@@ -38,14 +38,14 @@ const BoardEduCulEdit = () => {
   };
 
   // State variables to hold edited values
-  const [editedTitle, setEditedTitle] = useState(Culdetail1.title);
-  const [editedContent, setEditedContent] = useState(Culdetail1.content);
-  const [editedEduName, setEditedEduName] = useState(Culdetail1.CulInfo.EduName);
-  const [editedEduContent, setEditedEduContent] = useState(Culdetail1.CulInfo.EduContent);
-  const [editedEstablishmentDate, setEditedEstablishmentDate] = useState(Culdetail1.CulInfo.establishmentDate);
-  const [editedApplyCount, setEditedApplyCount] = useState(Culdetail1.CulInfo.ApplyCount);
-  const [editedTeacher, setEditedTeacher] = useState(Culdetail1.CulInfo.Teacher);
-  const [editedImage, setEditedImage] = useState(Culdetail1.image);
+  const [editedTitle, setEditedTitle] = useState(Cerdetail1.title);
+  const [editedContent, setEditedContent] = useState(Cerdetail1.content);
+  const [editedEduName, setEditedEduName] = useState(Cerdetail1.CerInfo.EduName);
+  const [editedEduContent, setEditedEduContent] = useState(Cerdetail1.CerInfo.EduContent);
+  const [editedEstablishmentDate, setEditedEstablishmentDate] = useState(Cerdetail1.CerInfo.establishmentDate);
+  const [editedApplyCount, setEditedApplyCount] = useState(Cerdetail1.CerInfo.ApplyCount);
+  const [editedTeacher, setEditedTeacher] = useState(Cerdetail1.CerInfo.Teacher);
+  const [editedImage, setEditedImage] = useState(Cerdetail1.image);
 
   const handleCancelPress = () => {
     // Navigate back to the board without saving changes
@@ -163,7 +163,7 @@ const BoardEduCulEdit = () => {
           </TouchableOpacity>
 
           <View>
-            <Text style={styles.titleText}>예술 교육 게시판</Text>
+            <Text style={styles.titleText}>자격증 교육 게시판</Text>
             <Text style={styles.subtitleText}>카테고리별 강의 홍보글 게시</Text>
           </View>
 
@@ -242,4 +242,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BoardEduCulEdit;
+export default BoardEduCerEdit;

@@ -32,9 +32,8 @@ const BoardPerView = ({ route, navigation: propNavigation }) => {
     title: '밴드 동아리 구합니다.',
     writer: '무야호',
     date: '2021.1.16',
-    count: 33,
-    image: require('./assets/images/photo1.jpg'),
-    content: '밴드 동아리원을 모집합니다. 연습 시간은 매주 화, 목요일 오후 7시부터 9시까지입니다. 연락주세요!',
+    image: require('./images/Per.jpg'),
+    content: '호두까기 인형은 러시아 작곡가 차이코프스키의 대표작 중 하나로, 아름다운 음악과 화려한 무대로 관객을 매료시키는 연극입니다. 이야기는 크리스마스 이브에, 클라라라는 소녀가 받은 호두까기 인형이 마법에 의해 살아나는 모험을 그립니다. 판타지와 로맨스, 모험이 공존하는 신비로운 이야기를 통해 감동과 즐거움을 선사합니다. 호두까기 인형과 함께 아름다운 꿈을 꾸러 오세요!',
   };
 
   // 수정사항(1128) - 삭제 버튼과 경고창 추가
@@ -74,7 +73,7 @@ const BoardPerView = ({ route, navigation: propNavigation }) => {
   };
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         <View style={styles.boardTitle}>
 
@@ -87,8 +86,8 @@ const BoardPerView = ({ route, navigation: propNavigation }) => {
         </View>
 
           <View>
-            <Text style={styles.titleText}>동호회 게시판</Text>
-            <Text style={styles.subtitleText}>동아리, 동호회 홍보글</Text>
+            <Text style={styles.titleText}>공연 및 전시회 정보</Text>
+            <Text style={styles.subtitleText}>카테고리별 지역 정보글 게시</Text>
           </View>
 
           <TouchableOpacity style={styles.editButton} onPress={() => navigation.navigate('BoardPer')}>
@@ -196,7 +195,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: '40%',
+    height: '30%',
     resizeMode: 'contain',
     // padding: 10,
     // borderRadius: 10,

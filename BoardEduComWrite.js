@@ -11,41 +11,20 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const BoardEduCulEdit = () => {
+const BoardEduComWrite = () => {
   const navigation = useNavigation();
 
   const [isEditing, setIsEditing] = useState(true); // Start in editing mode
 
-  const Culdetail1 = {
-    id: 1,
-    title: '기초 연극 교실',
-    writer: '관리자',
-    date: '2023.11.12',
-    image: './images/Cul.jpg',
-    content: `
-    기초 연극 교실에서 여러분의 숨겨진 재능을 발견해보세요! 
-    전문강사의 지도 하에 연기의 기본을 배우고, 자신만의 캐릭터를 만들어봅니다. 
-    연극을 통해 자신감을 키우고, 새로운 친구들과 함께 창작의 즐거움을 느껴보세요. 
-    기초 연극 교실에서 여러분의 무대를 준비하세요!
-    `,
-    CulInfo: {
-      EduName: '기초 연극 교실',
-      EduContent: '연극 연출을 위한 감정 표현법 및 기초 연출 연구',
-      establishmentDate: '2023.11.12',
-      ApplyCount: '00명',
-      Teacher: '강사명',
-    },
-  };
-
   // State variables to hold edited values
-  const [editedTitle, setEditedTitle] = useState(Culdetail1.title);
-  const [editedContent, setEditedContent] = useState(Culdetail1.content);
-  const [editedEduName, setEditedEduName] = useState(Culdetail1.CulInfo.EduName);
-  const [editedEduContent, setEditedEduContent] = useState(Culdetail1.CulInfo.EduContent);
-  const [editedEstablishmentDate, setEditedEstablishmentDate] = useState(Culdetail1.CulInfo.establishmentDate);
-  const [editedApplyCount, setEditedApplyCount] = useState(Culdetail1.CulInfo.ApplyCount);
-  const [editedTeacher, setEditedTeacher] = useState(Culdetail1.CulInfo.Teacher);
-  const [editedImage, setEditedImage] = useState(Culdetail1.image);
+  const [editedTitle, setEditedTitle] = useState('');
+  const [editedContent, setEditedContent] = useState('');
+  const [editedEduName, setEditedEduName] = useState('');
+  const [editedEduContent, setEditedEduContent] = useState('');
+  const [editedEstablishmentDate, setEditedEstablishmentDate] = useState('');
+  const [editedApplyCount, setEditedApplyCount] = useState('');
+  const [editedTeacher, setEditedTeacher] = useState('');
+  const [editedImage, setEditedImage] = useState('');
 
   const handleCancelPress = () => {
     // Navigate back to the board without saving changes
@@ -110,7 +89,7 @@ const BoardEduCulEdit = () => {
             onChangeText={(text) => setEditedEduContent(text)}
           />
         </View>
-        
+
         <View style={styles.editableContent}>
 
           <Text style={styles.label}>이미지 URL</Text>
@@ -163,7 +142,7 @@ const BoardEduCulEdit = () => {
           </TouchableOpacity>
 
           <View>
-            <Text style={styles.titleText}>예술 교육 게시판</Text>
+            <Text style={styles.titleText}>창업 교육 게시판</Text>
             <Text style={styles.subtitleText}>카테고리별 강의 홍보글 게시</Text>
           </View>
 
@@ -242,4 +221,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BoardEduCulEdit;
+export default BoardEduComWrite;

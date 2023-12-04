@@ -142,7 +142,7 @@ const BoardEduMusicWrite = () => {
           </TouchableOpacity>
 
           <View>
-            <Text style={styles.titleText}>문화예술 교육 게시판</Text>
+            <Text style={styles.titleText}>음악 교육 게시판</Text>
             <Text style={styles.subtitleText}>카테고리별 강의 홍보글 게시</Text>
           </View>
 

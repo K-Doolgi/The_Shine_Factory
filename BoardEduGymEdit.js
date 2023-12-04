@@ -18,19 +18,19 @@ const BoardEduGymEdit = () => {
 
   const Gymdetail1 = {
     id: 1,
-    title: '기초 미술 교실',
+    title: '기초 체력 교실',
     writer: '관리자',
     date: '2023.11.12',
     image: './images/gym.jpg',
     content: `
-    창의력을 깨우는 기초 미술 교실에 여러분을 초대합니다! 
-    다양한 미술 기법과 재료를 활용하여 자신만의 작품을 만들어보세요. 
-    초보자도 쉽게 따라할 수 있는 친절한 설명과 함께, 미술의 즐거움을 느껴보세요. 
-    지금 바로 신청하세요, 여러분의 창의적인 세상이 펼쳐집니다!
+    기초 체력 교실에 여러분을 초대합니다! 
+    우리의 전문 트레이너들이 여러분의 건강을 위해 설계된 프로그램으로 체력을 향상시키는데 도움을 줄 것입니다. 
+    운동을 통해 에너지를 충전하고, 건강한 몸을 만들어가는 과정을 즐겨보세요. 
+    기초 체력 교실에서 여러분의 새로운 시작을 응원합니다! 
     `,
     GymInfo: {
-      EduName: '기초 미술 교실',
-      EduContent: '다양한 미술 기법을 활용한 작품 제작',
+      EduName: '기초 체력 교실',
+      EduContent: '기초 체력 증진 프로그램',
       establishmentDate: '2023.11.12',
       ApplyCount: '00명',
       Teacher: '강사명',
@@ -163,7 +163,7 @@ const BoardEduGymEdit = () => {
           </TouchableOpacity>
 
           <View>
-            <Text style={styles.titleText}>문화예술 교육 게시판</Text>
+            <Text style={styles.titleText}>체육 교육 게시판</Text>
             <Text style={styles.subtitleText}>카테고리별 강의 홍보글 게시</Text>
           </View>
 

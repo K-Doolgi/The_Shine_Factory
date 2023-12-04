@@ -10,7 +10,7 @@ const BoardEduGym = () => {
   
 
   const GymData = [
-    { id: 1, title: '기초 미술 교실', writer: '관리자', date: '2023.11.12', screen: 'BoardEduGymDetail' },
+    { id: 1, title: '기초 체력 교실', writer: '관리자', date: '2023.11.12', screen: 'BoardEduGymDetail' },
   ];
 
 
@@ -58,7 +58,7 @@ const BoardEduGym = () => {
           </View>
 
           <View>
-            <Text style={styles.titleText}>미술 교육 게시판</Text>
+            <Text style={styles.titleText}>체육 교육 게시판</Text>
             <Text style={styles.subtitleText}>카테고리별 강의 홍보글 게시</Text>
           </View>
 

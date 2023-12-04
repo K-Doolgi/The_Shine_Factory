@@ -12,19 +12,19 @@ const BoardEduMusicDetail = ({ route }) => {
 
   const Musicdetail1 = {
     id: 1,
-    title: '기초 미술 교실',
+    title: '기초 음악 교실',
     writer: '관리자',
     date: '2023.11.12',
-    image: require('./images/art.jpg'),
+    image: require('./images/Music.jpg'),
     content: `
-    창의력을 깨우는 기초 미술 교실에 여러분을 초대합니다! 
-    다양한 미술 기법과 재료를 활용하여 자신만의 작품을 만들어보세요. 
-    초보자도 쉽게 따라할 수 있는 친절한 설명과 함께, 미술의 즐거움을 느껴보세요. 
+    창의력을 깨우는 기초 음악 교실에 여러분을 초대합니다! 
+    다양한 화성학 기법과 영감을 활용하여 자신만의 작품을 만들어보세요. 
+    초보자도 쉽게 따라할 수 있는 친절한 설명과 함께, 음악의 즐거움을 느껴보세요. 
     지금 바로 신청하세요, 여러분의 창의적인 세상이 펼쳐집니다!
     `,
     MusicInfo: {
-      EduName: '기초 미술 교실',
-      EduContent: '다양한 미술 기법을 활용한 작품 제작',
+      EduName: '기초 음악 교실',
+      EduContent: '다양한 편곡 기법을 활용한 작품 제작',
       establishmentDate: '2023.11.12',
       ApplyCount: '00명',
       Teacher: '강사명',
@@ -106,7 +106,7 @@ const BoardEduMusicDetail = ({ route }) => {
           
         </View>
         <View>
-          <Text style={styles.titleText}>미술 교육 게시판</Text>
+          <Text style={styles.titleText}>음악 교육 게시판</Text>
           <Text style={styles.subtitleText}>카테고리별 강의 홍보글 게시</Text>
         </View>
         <View style={styles.buttonWrap}>

@@ -19,9 +19,9 @@ const BoardAreaEdit = ({ route }) => {
 
   const AreaDetails = {
     id: 1,
-    title: '밴드 동아리 구합니다',
-    content: '밴드 동아리원을 모집합니다. 연습 시간은 매주 화, 목요일 오후 7시부터 9시까지입니다. 연락주세요!',
-    image: 'https://example.com/band_image.jpg',
+    title: '부산 광안리 (여행지 추천)',
+    content: '부산 광안리는 푸른 바다와 환상적인 야경이 어우러진 여행지입니다. 해변가 카페에서 바다를 바라보며 즐기는 여유, 광안대교 밑에서 별빛 같은 야경을 감상하는 순간은 잊지 못할 추억이 될 것입니다. 또한, 부산의 특색 있는 맛집과 쇼핑도 즐길 수 있습니다. 광안리에서 당신만의 특별한 추억을 만들어보세요.',
+    image: './images/Area.jpg',
   };
 
   const [editedTitle, setEditedTitle] = useState(AreaDetails.title);
@@ -52,8 +52,8 @@ const BoardAreaEdit = ({ route }) => {
           </TouchableOpacity>
 
           <View>
-            <Text style={styles.titleText}>동호회 게시판</Text>
-            <Text style={styles.subtitleText}>동아리, 동호회 홍보글</Text>
+            <Text style={styles.titleText}>지역별 여행 정보</Text>
+            <Text style={styles.subtitleText}>카테고리 별 지역 정보글 게시</Text>
           </View>
 
           <TouchableOpacity style={styles.button} onPress={handleCancelPress}>

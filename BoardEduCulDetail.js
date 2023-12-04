@@ -12,19 +12,19 @@ const BoardEduCulDetail = ({ route }) => {
 
   const Culdetail1 = {
     id: 1,
-    title: '기초 미술 교실',
+    title: '기초 연극 교실',
     writer: '관리자',
     date: '2023.11.12',
     image: require('./images/Cul.jpg'),
     content: `
-    창의력을 깨우는 기초 미술 교실에 여러분을 초대합니다! 
-    다양한 미술 기법과 재료를 활용하여 자신만의 작품을 만들어보세요. 
-    초보자도 쉽게 따라할 수 있는 친절한 설명과 함께, 미술의 즐거움을 느껴보세요. 
-    지금 바로 신청하세요, 여러분의 창의적인 세상이 펼쳐집니다!
+    기초 연극 교실에서 여러분의 숨겨진 재능을 발견해보세요! 
+    전문강사의 지도 하에 연기의 기본을 배우고, 자신만의 캐릭터를 만들어봅니다. 
+    연극을 통해 자신감을 키우고, 새로운 친구들과 함께 창작의 즐거움을 느껴보세요. 
+    기초 연극 교실에서 여러분의 무대를 준비하세요!
     `,
     CulInfo: {
-      EduName: '기초 미술 교실',
-      EduContent: '다양한 미술 기법을 활용한 작품 제작',
+      EduName: '기초 연극 교실',
+      EduContent: '연극 연출을 위한 감정 표현법 및 기초 연출 연구',
       establishmentDate: '2023.11.12',
       ApplyCount: '00명',
       Teacher: '강사명',
@@ -106,7 +106,7 @@ const BoardEduCulDetail = ({ route }) => {
           
         </View>
         <View>
-          <Text style={styles.titleText}>미술 교육 게시판</Text>
+          <Text style={styles.titleText}>예술 교육 게시판</Text>
           <Text style={styles.subtitleText}>카테고리별 강의 홍보글 게시</Text>
         </View>
         <View style={styles.buttonWrap}>

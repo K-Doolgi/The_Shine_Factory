@@ -26,7 +26,7 @@ const BoardHeal = ({ navigation: propNavigation }) => {
     }
   };
   const HealData = [
-    { id: 1, title: '밴드 동아리 구합니다.', writer: '무야호', date: '2021.1.16', count: 33 },
+    { id: 1, title: '오늘의 건강 상식 (23/12/04)', writer: '관리자', date: '2023.12.04'},
     // Add more data as needed
   ];
 
@@ -51,7 +51,6 @@ const BoardHeal = ({ navigation: propNavigation }) => {
         <View style={styles.cardInfo}>
           <Text style={styles.cardInfoText}>글쓴이: {item.writer}</Text>
           <Text style={styles.cardInfoText}>작성일: {item.date}</Text>
-          <Text style={styles.cardInfoText}>조회: {item.count}</Text>
         </View>
       </TouchableOpacity>
     </Card>
@@ -80,8 +79,8 @@ const BoardHeal = ({ navigation: propNavigation }) => {
 
 
           <View>
-            <Text style={styles.titleText}>동호회 게시판</Text>
-            <Text style={styles.subtitleText}>동아리, 동호회 홍보글</Text>
+            <Text style={styles.titleText}>건강 정보 게시판</Text>
+            <Text style={styles.subtitleText}>카테고리별 지역 정보글 게시</Text>
           </View>
 
           <View style={styles.buttonWrap}>

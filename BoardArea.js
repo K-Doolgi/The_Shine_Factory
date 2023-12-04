@@ -8,6 +8,7 @@ import {
   StyleSheet,
   StatusBar,
   ScrollView,
+  Image,
 } from 'react-native';
 import { Card } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
@@ -26,7 +27,7 @@ const BoardArea = ({ navigation: propNavigation }) => {
     }
   };
   const AreaData = [
-    { id: 1, title: '밴드 동아리 구합니다.', writer: '무야호', date: '2021.1.16', count: 33 },
+    { id: 1, title: '부산 광안리 (여행지 추천)', writer: '관리자', image: require('./images/Area.jpg'), date: '2021.1.16'},
     // Add more data as needed
   ];
 
@@ -47,11 +48,11 @@ const BoardArea = ({ navigation: propNavigation }) => {
   const renderItem = ({ item }) => (
     <Card containerStyle={styles.card} key={item.id}>
       <TouchableOpacity onPress={() => navigation.navigate('BoardAreaView', { AreaId: item.id })}>
+      
         <Text style={styles.cardTitle}>{item.title}</Text>
         <View style={styles.cardInfo}>
           <Text style={styles.cardInfoText}>글쓴이: {item.writer}</Text>
           <Text style={styles.cardInfoText}>작성일: {item.date}</Text>
-          <Text style={styles.cardInfoText}>조회: {item.count}</Text>
         </View>
       </TouchableOpacity>
     </Card>
@@ -80,8 +81,8 @@ const BoardArea = ({ navigation: propNavigation }) => {
 
 
           <View>
-            <Text style={styles.titleText}>동호회 게시판</Text>
-            <Text style={styles.subtitleText}>동아리, 동호회 홍보글</Text>
+            <Text style={styles.titleText}>지역별 여행 정보</Text>
+            <Text style={styles.subtitleText}>카테고리 별 지역 정보글 게시</Text>
           </View>
 
           <View style={styles.buttonWrap}>

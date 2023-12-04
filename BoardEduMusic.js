@@ -10,7 +10,7 @@ const BoardEduMusic = () => {
   
 
   const MusicData = [
-    { id: 1, title: '기초 미술 교실', writer: '관리자', date: '2023.11.12', screen: 'BoardEduArtDetail' },
+    { id: 1, title: '기초 음악 교실', writer: '관리자', date: '2023.11.12', screen: 'BoardEduMusicDetail' },
   ];
 
 

@@ -19,9 +19,9 @@ const BoardHealEdit = ({ route }) => {
 
   const HealDetails = {
     id: 1,
-    title: '밴드 동아리 구합니다',
-    content: '밴드 동아리원을 모집합니다. 연습 시간은 매주 화, 목요일 오후 7시부터 9시까지입니다. 연락주세요!',
-    image: 'https://example.com/band_image.jpg',
+    title: '오늘의 건강 상식 (23/12/04)',
+    content: '물은 우리 몸의 필수적인 영양소입니다. 하루에 최소 8잔(2리터)의 물을 섭취하는 것이 건강에 도움이 됩니다. 물은 체내 독소를 제거하고, 피부를 건강하게 유지하며, 신체의 온도를 조절하는데 필요합니다. 또한, 물은 소화기능과 뇌 기능을 개선하며, 기분을 좋게 만드는 데도 도움이 됩니다. 건강을 위해 충분한 수분 섭취를 잊지 마세요.',
+    image: './images/Heal.jpg',
   };
 
   const [editedTitle, setEditedTitle] = useState(HealDetails.title);
@@ -52,8 +52,8 @@ const BoardHealEdit = ({ route }) => {
           </TouchableOpacity>
 
           <View>
-            <Text style={styles.titleText}>동호회 게시판</Text>
-            <Text style={styles.subtitleText}>동아리, 동호회 홍보글</Text>
+            <Text style={styles.titleText}>건강 정보 게시판</Text>
+            <Text style={styles.subtitleText}>카테고리별 지역 정보글 게시</Text>
           </View>
 
           <TouchableOpacity style={styles.button} onPress={handleCancelPress}>

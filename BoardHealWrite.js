@@ -89,8 +89,8 @@ const BoardHealWrite = () => {
         </TouchableOpacity>
 
         <View>
-        <Text style={styles.titleText}>동호회 게시판</Text>
-        <Text style={styles.subtitleText}>동아리, 동호회 홍보글</Text>
+          <Text style={styles.titleText}>건강 정보 게시판</Text>
+          <Text style={styles.subtitleText}>카테고리별 지역 정보글 게시</Text>
         </View>
        
 

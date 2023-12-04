@@ -3,28 +3,28 @@ import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView, StatusBar,
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from './AuthContext';
 
-import BoardEduGym from './BoardEduGym';
+import BoardEduCer from './BoardEduCer';
 
-const BoardEduGymDetail = ({ route }) => {
-  const { GymId } = route.params;
+const BoardEduCerDetail = ({ route }) => {
+  const { CerId } = route.params;
   const navigation = useNavigation();
   const { isLoggedIn, userType, name, username, address, phoneNumber } = useAuth();
 
-  const Gymdetail1 = {
+  const Cerdetail1 = {
     id: 1,
-    title: '기초 체력 교실',
+    title: '컴활 2급 자격증 과정 교육',
     writer: '관리자',
     date: '2023.11.12',
-    image: require('./images/gym.jpg'),
+    image: require('./images/Cer.jpg'),
     content: `
-    기초 체력 교실에 여러분을 초대합니다! 
-    우리의 전문 트레이너들이 여러분의 건강을 위해 설계된 프로그램으로 체력을 향상시키는데 도움을 줄 것입니다. 
-    운동을 통해 에너지를 충전하고, 건강한 몸을 만들어가는 과정을 즐겨보세요. 
-    기초 체력 교실에서 여러분의 새로운 시작을 응원합니다! 
+    컴활 2급 자격증 과정 교육에 참여하시어 디지털 세상에 더욱 능숙하게 대처하세요! 
+    전문 강사의 체계적인 교육과 실전 문제 풀이로 실력을 키우세요. 
+    컴퓨터 활용능력 2급 자격증으로 취업 경쟁력을 한 단계 높여보세요. 
+    지금 바로 컴활 2급 자격증 과정에 참여하고, 더 넓은 세상을 경험하세요!
     `,
-    GymInfo: {
-      EduName: '기초 체력 교실',
-      EduContent: '기초 체력 증진 프로그램',
+    CerInfo: {
+      EduName: '컴활 2급 자격증 과정 교육',
+      EduContent: '컴활 2급 자격증 과정 단기 속성 교육',
       establishmentDate: '2023.11.12',
       ApplyCount: '00명',
       Teacher: '강사명',
@@ -33,7 +33,7 @@ const BoardEduGymDetail = ({ route }) => {
 
   const handleEduEdit = () => {
     if (isLoggedIn && userType === 'admin') {
-      navigation.navigate('BoardEduGymEdit', { GymId: GymId });
+      navigation.navigate('BoardEduCerEdit', { CerId: Cerdetail1 });
     } else {
       alert('작성 권한이 없습니다.');
     }
@@ -50,7 +50,7 @@ const BoardEduGymDetail = ({ route }) => {
           onPress: () => {
             // 신청 정보를 출력하고 알림창 띄우기
             console.log('신청자 정보');
-            console.log('교육명:', Gymdetail1.GymInfo.EduName);
+            console.log('교육명:', Cerdetail1.CerInfo.EduName);
             console.log('User Type:', userType);
             console.log('Name:', name);
             console.log('UserName:', username);
@@ -82,7 +82,7 @@ const BoardEduGymDetail = ({ route }) => {
           text: '예',
           onPress: () => {
             // 나중에 내용 삭제하는 매크로 추가해야함
-            navigation.navigate(BoardEduGym),
+            navigation.navigate(BoardEduCer),
             Alert.alert('게시글이 삭제되었습니다.');
           },
         },
@@ -106,11 +106,11 @@ const BoardEduGymDetail = ({ route }) => {
           
         </View>
         <View>
-          <Text style={styles.titleText}>체육 교육 게시판</Text>
+          <Text style={styles.titleText}>자격증 교육 게시판</Text>
           <Text style={styles.subtitleText}>카테고리별 강의 홍보글 게시</Text>
         </View>
         <View style={styles.buttonWrap}>
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('BoardEduGym')}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('BoardEduCer')}>
             <Text style={styles.buttonText}>목록</Text>
           </TouchableOpacity>
         </View>
@@ -118,47 +118,47 @@ const BoardEduGymDetail = ({ route }) => {
 
       <View style={styles.boardViewWrap}>
         <View style={styles.boardView}>
-          <Text style={styles.title}>제목: {Gymdetail1.title}</Text>
+          <Text style={styles.title}>제목: {Cerdetail1.title}</Text>
           <View style={styles.info}>
             <View style={styles.infoItem}>
               <Text style={styles.infoLabel}>번호</Text>
-              <Text style={styles.infoValue}>{Gymdetail1.id}</Text>
+              <Text style={styles.infoValue}>{Cerdetail1.id}</Text>
             </View>
             <View style={styles.infoItem}>
               <Text style={styles.infoLabel}>작성자</Text>
-              <Text style={styles.infoValue}>{Gymdetail1.writer}</Text>
+              <Text style={styles.infoValue}>{Cerdetail1.writer}</Text>
             </View>
             <View style={styles.infoItem}>
               <Text style={styles.infoLabel}>작성일</Text>
-              <Text style={styles.infoValue}>{Gymdetail1.date}</Text>
+              <Text style={styles.infoValue}>{Cerdetail1.date}</Text>
             </View>
           </View>
 
           <View style={styles.content}>
-            <Image style={styles.image} source={Gymdetail1.image} />
-            <Text>{Gymdetail1.content}</Text>
+            <Image style={styles.image} source={Cerdetail1.image} />
+            <Text>{Cerdetail1.content}</Text>
           </View>
 
           <Text style={styles.title}>교육정보</Text>
           <View style={styles.infoItem}>
             <Text style={styles.infoLabel}>교육명: </Text>
-            <Text style={styles.infoValue}>{Gymdetail1.GymInfo.EduName}</Text>
+            <Text style={styles.infoValue}>{Cerdetail1.CerInfo.EduName}</Text>
           </View>
           <View style={styles.infoItem}>
             <Text style={styles.infoLabel}>교육내용: </Text>
-            <Text style={styles.infoValue}>{Gymdetail1.GymInfo.EduContent}</Text>
+            <Text style={styles.infoValue}>{Cerdetail1.CerInfo.EduContent}</Text>
           </View>
           <View style={styles.infoItem}>
             <Text style={styles.infoLabel}>교육기간: </Text>
-            <Text style={styles.infoValue}>{Gymdetail1.GymInfo.establishmentDate}</Text>
+            <Text style={styles.infoValue}>{Cerdetail1.CerInfo.establishmentDate}</Text>
           </View>
           <View style={styles.infoItem}>
             <Text style={styles.infoLabel}>모집인원: </Text>
-            <Text style={styles.infoValue}>{Gymdetail1.GymInfo.ApplyCount}</Text>
+            <Text style={styles.infoValue}>{Cerdetail1.CerInfo.ApplyCount}</Text>
           </View>
           <View style={styles.infoItem}>
             <Text style={styles.infoLabel}>강사이름: </Text>
-            <Text style={styles.infoValue}>{Gymdetail1.GymInfo.Teacher}</Text>
+            <Text style={styles.infoValue}>{Cerdetail1.CerInfo.Teacher}</Text>
           </View>
         </View>
 
@@ -326,4 +326,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BoardEduGymDetail;
+export default BoardEduCerDetail;

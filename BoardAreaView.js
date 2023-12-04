@@ -29,12 +29,11 @@ const BoardAreaView = ({ route, navigation: propNavigation }) => {
 
   const AreaDetails = {
     id: 1,
-    title: '밴드 동아리 구합니다.',
-    writer: '무야호',
+    title: '부산 광안리 (여행지 추천)',
+    writer: '관리자',
     date: '2021.1.16',
-    count: 33,
-    image: require('./assets/images/photo1.jpg'),
-    content: '밴드 동아리원을 모집합니다. 연습 시간은 매주 화, 목요일 오후 7시부터 9시까지입니다. 연락주세요!',
+    image: require('./images/Area.jpg'),
+    content: '부산 광안리는 푸른 바다와 환상적인 야경이 어우러진 여행지입니다. 해변가 카페에서 바다를 바라보며 즐기는 여유, 광안대교 밑에서 별빛 같은 야경을 감상하는 순간은 잊지 못할 추억이 될 것입니다. 또한, 부산의 특색 있는 맛집과 쇼핑도 즐길 수 있습니다. 광안리에서 당신만의 특별한 추억을 만들어보세요.',
   };
 
   // 수정사항(1128) - 삭제 버튼과 경고창 추가
@@ -87,8 +86,8 @@ const BoardAreaView = ({ route, navigation: propNavigation }) => {
         </View>
 
           <View>
-            <Text style={styles.titleText}>동호회 게시판</Text>
-            <Text style={styles.subtitleText}>동아리, 동호회 홍보글</Text>
+            <Text style={styles.titleText}>지역별 여행 정보</Text>
+            <Text style={styles.subtitleText}>카테고리 별 지역 정보글 게시</Text>
           </View>
 
           <TouchableOpacity style={styles.editButton} onPress={() => navigation.navigate('BoardArea')}>
@@ -111,10 +110,6 @@ const BoardAreaView = ({ route, navigation: propNavigation }) => {
               <View style={styles.infoItem}>
                 <Text style={styles.infoLabel}>작성일</Text>
                 <Text style={styles.infoValue}>{AreaDetails.date}</Text>
-              </View>
-              <View style={styles.infoItem}>
-                <Text style={styles.infoLabel}>조회</Text>
-                <Text style={styles.infoValue}>{AreaDetails.count}</Text>
               </View>
             </View>
             <Image style={styles.image} source={AreaDetails.image} />
