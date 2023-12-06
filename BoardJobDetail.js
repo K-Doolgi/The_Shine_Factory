@@ -55,9 +55,9 @@ const BoardJobDetail = ({ route, navigation: propNavigation }) => {
   const jobDetails = {
     id: 1,
     title: '구인합니다.',
-    writer: '무야호',
-    date: '2021.1.16',
-    count: 33,
+    writer: '00기업',
+    date: '2023. 11. 12. 오후 9:28:59',
+    
     content: `
       글 내용이 들어갑니다
       글 내용이 들어갑니다
@@ -102,7 +102,6 @@ const BoardJobDetail = ({ route, navigation: propNavigation }) => {
             
             <View>
               <Text style={styles.titleText}>일자리 정보</Text>
-              <Text style={styles.subtitleText}>구인 관련글 게시</Text>
             </View>
             
             <View style={styles.buttonWrap}>
@@ -129,10 +128,7 @@ const BoardJobDetail = ({ route, navigation: propNavigation }) => {
                 <Text style={styles.infoLabel}>작성일</Text>
                 <Text style={styles.infoValue}>{jobDetails.date}</Text>
               </View>
-              <View style={styles.infoItem}>
-                <Text style={styles.infoLabel}>조회</Text>
-                <Text style={styles.infoValue}>{jobDetails.count}</Text>
-              </View>
+              
             </View>
 
             <Text style={styles.content}>{jobDetails.content}</Text>
@@ -246,7 +242,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   button: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 10,
     borderRadius: 5,
   },
@@ -255,7 +251,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   deleteButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 10,
     borderRadius: 5,
     marginTop: 20,

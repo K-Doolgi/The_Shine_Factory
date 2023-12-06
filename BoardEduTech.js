@@ -10,9 +10,9 @@ const BoardEduTech = () => {
   
 
   const TechData = [
-    { id: 1, title: '3D 프린팅과 3D펜 교육', writer: '관리자', date: '2023.11.12', screen: 'BoardEduTechDetail' },
-    { id: 2, title: 'SW코딩교육', writer: '관리자', date: '2023.11.12', screen: 'BoardEduTechDetail2' },
-    { id: 3, title: '미디어콘텐츠개발 교육', writer: '관리자', date: '2023.11.12', screen: 'BoardEduTechDetail3' },
+    { id: 1, title: '3D 프린팅과 3D펜 교육', writer: '관리자', date: '2023. 11. 12. 오후 9:28:59', screen: 'BoardEduTechDetail' },
+    { id: 2, title: 'SW코딩교육', writer: '관리자', date: '2023. 11. 12. 오후 9:42:01', screen: 'BoardEduTechDetail2' },
+    { id: 3, title: '미디어콘텐츠개발 교육', writer: '관리자', date: '2023. 11. 12. 오후 9:44:15', screen: 'BoardEduTechDetail3' },
   ];
 
 
@@ -61,7 +61,6 @@ const BoardEduTech = () => {
 
           <View>
             <Text style={styles.titleText}>전문 기술 과정 게시판</Text>
-            <Text style={styles.subtitleText}>카테고리별 강의 홍보글 게시</Text>
           </View>
 
         <View style={styles.buttonWrap}>
@@ -112,11 +111,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     margin: 20,
-    paddingTop: 20
+    //paddingTop: 20
   },
   titleText: {
     fontSize: 24,
-    paddingBottom: 10,
+    //paddingBottom: 10,
     fontWeight: 'bold',
     textAlign: 'center',
   },
@@ -147,7 +146,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   button: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 10,
     borderRadius: 5,
   },
@@ -162,7 +161,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   paginationButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 8,
     borderRadius: 5,
   },

@@ -14,7 +14,7 @@ const BoardEduTechDetail3 = ({ route }) => {
     id: 3,
     title: '미디어콘텐츠개발 교육',
     writer: '관리자',
-    date: '2023.11.12',
+    date: '2023. 11. 12. 오후 9:44:15',
     image: require('./images/Tc3.jpg'),
     content: `
       아이들은 이미 예술가이며, 미디어 창작자입니다.
@@ -23,7 +23,7 @@ const BoardEduTechDetail3 = ({ route }) => {
     `,
     EducationInfo: {
       EduName: '미디어콘텐츠개발 교육',
-      EduContent: '전문적인 SW메이커교육 운영을 통한 미래역량 강화',
+      EduContent: '2024.01.01',
       establishmentDate: '2023.11.12',
       ApplyCount: '00명',
       Teacher: '강사명',
@@ -144,7 +144,7 @@ const BoardEduTechDetail3 = ({ route }) => {
             <Text style={styles.infoValue}>{Educationdetail3.EducationInfo.EduName}</Text>
           </View>
           <View style={styles.infoItem}>
-            <Text style={styles.infoLabel}>교육내용: </Text>
+            <Text style={styles.infoLabel}>접수마감: </Text>
             <Text style={styles.infoValue}>{Educationdetail3.EducationInfo.EduContent}</Text>
           </View>
           <View style={styles.infoItem}>
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
     minWidth: 60,
   },
   button: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 10,
     borderRadius: 5,
   },
@@ -263,13 +263,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   editButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 10,
     borderRadius: 5,
     marginTop: 20,
   },
   deleteButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 10,
     borderRadius: 5,
     marginTop: 20,

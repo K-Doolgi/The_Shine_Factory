@@ -1,5 +1,5 @@
 import React ,{useState} from 'react';
-import { View, Text, TouchableOpacity, FlatList, StyleSheet, StatusBar } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, StyleSheet, StatusBar, Image } from 'react-native';
 import { Card } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from './AuthContext';
@@ -10,7 +10,9 @@ const BoardEduMusic = () => {
   
 
   const MusicData = [
-    { id: 1, title: '기초 음악 교실', writer: '관리자', date: '2023.11.12', screen: 'BoardEduMusicDetail' },
+    { id: 1, title: '기초 음악 교실', writer: '관리자', date: '2023. 11. 12 오후 9:48:25', screen: 'BoardEduMusicDetail' },
+    { id: 2, title: '드럼 클래스 중급반', writer: '관리자', date: '2023. 11. 12 오후 9:50:42', screen: 'BoardEduMusicDetail' },
+    { id: 3, title: '클래식 기타 강습', writer: '관리자', date: '2023. 11. 12 오후 9:52:16', screen: 'BoardEduMusicDetail' },
   ];
 
 
@@ -47,6 +49,7 @@ const BoardEduMusic = () => {
 
   return (
     <View style={styles.container}>
+      
       <View style={styles.boardTitle}>
 
           <View style={styles.buttonWrap}>
@@ -58,8 +61,7 @@ const BoardEduMusic = () => {
           </View>
 
           <View>
-            <Text style={styles.titleText}>음악 교육 게시판</Text>
-            <Text style={styles.subtitleText}>카테고리별 강의 홍보글 게시</Text>
+            <Text style={styles.titleText}>음악 교육 게시판</Text>            
           </View>
 
         <View style={styles.buttonWrap}>
@@ -105,16 +107,23 @@ const styles = StyleSheet.create({
     backgroundColor: '#F0F0F0',
     padding: 20,
   },
+  Imagetitle: {
+    //flex: 1,
+    width: 110,
+    height: 30,
+    //marginRight: 100,
+    //alignSelf: 'center',
+  },
   boardTitle: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    margin: 20,
-    paddingTop: 20
+    margin: 10,
+    //paddingTop: 20
   },
   titleText: {
     fontSize: 24,
-    paddingBottom: 10,
+    //paddingBottom: 0,
     fontWeight: 'bold',
     textAlign: 'center',
   },
@@ -145,7 +154,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   button: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 10,
     borderRadius: 5,
   },
@@ -160,7 +169,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   paginationButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 8,
     borderRadius: 5,
   },

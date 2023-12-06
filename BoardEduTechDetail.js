@@ -15,7 +15,7 @@ const BoardEduTechDetail = ({ route }) => {
     id: 1,
     title: '3D 프린팅과 3D펜 교육',
     writer: '관리자',
-    date: '2023.11.12',
+    date: '2023. 11. 12. 오후 9:28:59',
     image: require('./images/Tc1.png'),
     content: `
       4차산업혁명 시대의 중요분야로
@@ -25,7 +25,7 @@ const BoardEduTechDetail = ({ route }) => {
     `,
     EducationInfo: {
       EduName: '3D 프린팅과 3D펜 교육',
-      EduContent: '3D 도구를 통한 수강자의 공간지각능력 향상',
+      EduContent: '2024.01.01',
       establishmentDate: '2023.11.12',
       ApplyCount: '00명',
       Teacher: '강사명',
@@ -108,7 +108,6 @@ const BoardEduTechDetail = ({ route }) => {
         </View>
         <View>
           <Text style={styles.titleText}>전문 기술 과정 게시판</Text>
-          <Text style={styles.subtitleText}>카테고리별 강의 홍보글 게시</Text>
         </View>
         <View style={styles.buttonWrap}>
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('BoardEduTech')}>
@@ -146,7 +145,7 @@ const BoardEduTechDetail = ({ route }) => {
             <Text style={styles.infoValue}>{Educationdetail1.EducationInfo.EduName}</Text>
           </View>
           <View style={styles.infoItem}>
-            <Text style={styles.infoLabel}>교육내용: </Text>
+            <Text style={styles.infoLabel}>접수마감: </Text>
             <Text style={styles.infoValue}>{Educationdetail1.EducationInfo.EduContent}</Text>
           </View>
           <View style={styles.infoItem}>
@@ -212,7 +211,7 @@ const styles = StyleSheet.create({
     minWidth: 60,
   },
   button: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 10,
     borderRadius: 5,
   },
@@ -265,13 +264,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   editButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 10,
     borderRadius: 5,
     marginTop: 20,
   },
   deleteButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 10,
     borderRadius: 5,
     marginTop: 20,

@@ -14,7 +14,7 @@ const BoardEduMusicDetail = ({ route }) => {
     id: 1,
     title: '기초 음악 교실',
     writer: '관리자',
-    date: '2023.11.12',
+    date: '2023. 11. 12. 오후 9:48:25',
     image: require('./images/Music.jpg'),
     content: `
     창의력을 깨우는 기초 음악 교실에 여러분을 초대합니다! 
@@ -24,7 +24,7 @@ const BoardEduMusicDetail = ({ route }) => {
     `,
     MusicInfo: {
       EduName: '기초 음악 교실',
-      EduContent: '다양한 편곡 기법을 활용한 작품 제작',
+      EduContent: '2024.01.01',
       establishmentDate: '2023.11.12',
       ApplyCount: '00명',
       Teacher: '강사명',
@@ -107,7 +107,6 @@ const BoardEduMusicDetail = ({ route }) => {
         </View>
         <View>
           <Text style={styles.titleText}>음악 교육 게시판</Text>
-          <Text style={styles.subtitleText}>카테고리별 강의 홍보글 게시</Text>
         </View>
         <View style={styles.buttonWrap}>
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('BoardEduMusic')}>
@@ -145,7 +144,7 @@ const BoardEduMusicDetail = ({ route }) => {
             <Text style={styles.infoValue}>{Musicdetail1.MusicInfo.EduName}</Text>
           </View>
           <View style={styles.infoItem}>
-            <Text style={styles.infoLabel}>교육내용: </Text>
+            <Text style={styles.infoLabel}>접수마감: </Text>
             <Text style={styles.infoValue}>{Musicdetail1.MusicInfo.EduContent}</Text>
           </View>
           <View style={styles.infoItem}>
@@ -211,7 +210,7 @@ const styles = StyleSheet.create({
     minWidth: 60,
   },
   button: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 10,
     borderRadius: 5,
   },
@@ -264,13 +263,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   editButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 10,
     borderRadius: 5,
     marginTop: 20,
   },
   deleteButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 10,
     borderRadius: 5,
     marginTop: 20,

@@ -26,7 +26,7 @@ const BoardHobby = ({ navigation: propNavigation }) => {
     }
   };
   const HobbyData = [
-    { id: 1, title: '밴드 동아리 구합니다.', writer: '무야호', date: '2021.1.16', count: 33 },
+    { id: 1, title: '밴드 동아리 구합니다.', writer: 'user', date: '2023. 11. 12. 오후 9:28:59' },
     // Add more data as needed
   ];
 
@@ -51,7 +51,6 @@ const BoardHobby = ({ navigation: propNavigation }) => {
         <View style={styles.cardInfo}>
           <Text style={styles.cardInfoText}>글쓴이: {item.writer}</Text>
           <Text style={styles.cardInfoText}>작성일: {item.date}</Text>
-          <Text style={styles.cardInfoText}>조회: {item.count}</Text>
         </View>
       </TouchableOpacity>
     </Card>
@@ -81,7 +80,7 @@ const BoardHobby = ({ navigation: propNavigation }) => {
 
           <View>
             <Text style={styles.titleText}>동호회 게시판</Text>
-            <Text style={styles.subtitleText}>동아리, 동호회 홍보글</Text>
+            {/* <Text style={styles.subtitleText}>동아리, 동호회 홍보글</Text> */}
           </View>
 
           <View style={styles.buttonWrap}>
@@ -134,11 +133,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     margin: 20,
-    paddingTop: 20,
+    //paddingTop: 20,
   },
   titleText: {
     fontSize: 24,
-    paddingBottom: 10,
+    //paddingBottom: 10,
     fontWeight: 'bold',
     textAlign: 'center',
   },
@@ -169,7 +168,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   button: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 10,
     borderRadius: 5,
   },
@@ -184,7 +183,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   paginationButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 8,
     borderRadius: 5,
   },

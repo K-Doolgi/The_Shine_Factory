@@ -3,7 +3,7 @@
 // 로그인 했을 때 기존 App.js의 버튼이 log-in -> log-out으로 변경 가능
 // 이 기능을 이용해서 계정별 게시판 이용권한 조정 예정
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, StyleSheet, Image } from 'react-native';
 import { useAuth } from './AuthContext';
 import { Alert } from 'react-native';
 
@@ -80,10 +80,14 @@ const Signin = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.title}>
+      <Image source={require('./images/brand.jpg')} style={styles.Imagetitle} resizeMode="contain" />
+      </View>
+
       <Text style={styles.title}>로그인</Text>
       <TextInput
         style={styles.input}
-        placeholder="ID(E-mail)를 입력해 주세요."
+        placeholder="ID를 입력해 주세요."
         keyboardType="email-address"
         autoCapitalize="none"
         value={userId}
@@ -98,15 +102,15 @@ const Signin = ({ navigation }) => {
       />
 
       <TouchableOpacity style={styles.Signin} onPress={handleSignin}>
-        <Text style={styles.buttonText}>Sign In</Text>
+        <Text style={styles.buttonText}>로그인</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate('FindPW')}>
-        <Text style={styles.forgotPassword}>비밀번호 찾기</Text>
+      <TouchableOpacity style={styles.findPW} onPress={() => navigation.navigate('FindPW')}>
+        <Text style={styles.buttonText}>비밀번호 찾기</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
-        <Text style={styles.signUpLink}>회원가입 하기</Text>
+      <TouchableOpacity style={styles.Signup} onPress={() => navigation.navigate('Signup')}>
+        <Text style={styles.buttonText}>회원가입 하기</Text>
       </TouchableOpacity>
     </View>
   );
@@ -119,8 +123,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 16,
   },
+  Imagetitle: {
+    //flex: 1,
+    width: 110,
+    height: 50,
+    //marginRight: 100,
+    
+  },
   title: {
     fontSize: 24,
+    fontWeight: 'bold',
     marginBottom: 16,
   },
   input: {
@@ -132,13 +144,25 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   forgotPassword: {
-    color: 'blue',
+    color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
     margin: 12,
   },
   Signin: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
+    padding: 10,
+    borderRadius: 5,
+    margin: 20,
+  },
+  Signup: {
+    backgroundColor: '#F7C524',
+    padding: 10,
+    borderRadius: 5,
+    margin: 20,
+  },
+  findPW: {
+    backgroundColor: '#F7C524',
     padding: 10,
     borderRadius: 5,
     margin: 20,
@@ -149,7 +173,7 @@ const styles = StyleSheet.create({
   },
   signUpLink: {
     marginTop: 16,
-    color: 'green',
+    color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
   },

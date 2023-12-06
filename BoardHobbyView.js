@@ -30,9 +30,9 @@ const BoardHobbyView = ({ route, navigation: propNavigation }) => {
   const hobbyDetails = {
     id: 1,
     title: '밴드 동아리 구합니다.',
-    writer: '무야호',
-    date: '2021.1.16',
-    count: 33,
+    writer: 'user',
+    date: '2023. 11. 12. 오후 9:28:59',
+    //count: 33,
     image: require('./assets/images/photo1.jpg'),
     content: '밴드 동아리원을 모집합니다. 연습 시간은 매주 화, 목요일 오후 7시부터 9시까지입니다. 연락주세요!',
   };
@@ -88,7 +88,7 @@ const BoardHobbyView = ({ route, navigation: propNavigation }) => {
 
           <View>
             <Text style={styles.titleText}>동호회 게시판</Text>
-            <Text style={styles.subtitleText}>동아리, 동호회 홍보글</Text>
+            {/* <Text style={styles.subtitleText}>동아리, 동호회 홍보글</Text> */}
           </View>
 
           <TouchableOpacity style={styles.editButton} onPress={() => navigation.navigate('BoardHobby')}>
@@ -112,10 +112,7 @@ const BoardHobbyView = ({ route, navigation: propNavigation }) => {
                 <Text style={styles.infoLabel}>작성일</Text>
                 <Text style={styles.infoValue}>{hobbyDetails.date}</Text>
               </View>
-              <View style={styles.infoItem}>
-                <Text style={styles.infoLabel}>조회</Text>
-                <Text style={styles.infoValue}>{hobbyDetails.count}</Text>
-              </View>
+              
             </View>
             <Image style={styles.image} source={hobbyDetails.image} />
 
@@ -205,13 +202,13 @@ const styles = StyleSheet.create({
     marginEnd: 10,
   },
   editButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 10,
     borderRadius: 5,
     marginTop: 20,
   },
   deleteButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 10,
     borderRadius: 5,
     marginTop: 20,

@@ -28,7 +28,7 @@ const BoardJob = ({ navigation: propNavigation }) => {
     }
   };
   const jobData = [
-    { id: 1, title: '구인합니다.', writer: '김이름', date: '2021.1.15', count: 33 },
+    { id: 1, title: '구인합니다.', writer: '00기업', date: '2023. 11. 12. 오후 9:28:59'},
     // Add more data as needed
   ];
   // 수정사항(1128) - 게시글 8개당 한페이지 씩 넘어가도록 구현
@@ -83,7 +83,6 @@ const BoardJob = ({ navigation: propNavigation }) => {
 
           <View>
             <Text style={styles.titleText}>일자리 정보</Text>
-            <Text style={styles.subtitleText}>구인 관련글 게시</Text>
           </View>
 
           <View style={styles.buttonWrap}>
@@ -135,11 +134,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     margin: 20,
-    paddingTop: 20,
+    //paddingTop: 20,
   },
   titleText: {
     fontSize: 24,
-    paddingBottom: 10,
+    //paddingBottom: 10,
     fontWeight: 'bold',
   },
   subtitleText: {
@@ -168,7 +167,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   button: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 10,
     borderRadius: 5,
   },
@@ -183,7 +182,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   paginationButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 8,
     borderRadius: 5,
   },

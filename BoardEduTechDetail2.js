@@ -14,7 +14,7 @@ const BoardEduTechDetail2 = ({ route }) => {
     id: 2,
     title: 'SW코딩교육',
     writer: '관리자',
-    date: '2023.11.12',
+    date: '2023. 11. 12. 오후 9:42:01',
     image: require('./images/Tc2.jpg'),
     content: `
       모든 아이들이 코딩을 할 수 있어야 합니다.
@@ -25,7 +25,7 @@ const BoardEduTechDetail2 = ({ route }) => {
     `,
     EducationInfo: {
       EduName: 'SW코딩교육',
-      EduContent: '코딩을 통한 어린이들의 자발적인 학습태도 양성',
+      EduContent: '2024.01.01',
       establishmentDate: '2023.11.12',
       ApplyCount: '00명',
       Teacher: '강사명',
@@ -146,7 +146,7 @@ const BoardEduTechDetail2 = ({ route }) => {
             <Text style={styles.infoValue}>{Educationdetail2.EducationInfo.EduName}</Text>
           </View>
           <View style={styles.infoItem}>
-            <Text style={styles.infoLabel}>교육내용: </Text>
+            <Text style={styles.infoLabel}>접수마감: </Text>
             <Text style={styles.infoValue}>{Educationdetail2.EducationInfo.EduContent}</Text>
           </View>
           <View style={styles.infoItem}>
@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
     minWidth: 60,
   },
   button: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 10,
     borderRadius: 5,
   },
@@ -265,13 +265,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   editButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 10,
     borderRadius: 5,
     marginTop: 20,
   },
   deleteButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 10,
     borderRadius: 5,
     marginTop: 20,

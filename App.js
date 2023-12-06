@@ -8,7 +8,7 @@
 // 이 기능을 이용해서 계정별 게시판 이용권한 조정 예정
 // App.js
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, StatusBar, Image, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, StatusBar, Image, ScrollView, Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
@@ -141,6 +141,30 @@ const HomeScreen = ({ navigation }) => {
     setShowEducationSubMenu(false);
     setShowCultureSubMenu(false);
   };
+
+  
+    const handleLogout = () => {
+      Alert.alert(
+        '로그아웃',
+        '로그아웃 하시겠습니까?',
+        [
+          {
+            text: '취소',
+            style: 'cancel',
+          },
+          {
+            text: '확인',
+            onPress: async () => {
+              // Call the logout function
+              await logout();
+              // Show logout notification
+              Alert.alert('알림', '로그아웃 되었습니다.');
+            },
+          },
+        ],
+        { cancelable: false }
+      );
+    };
   
 
   return (
@@ -154,13 +178,14 @@ const HomeScreen = ({ navigation }) => {
         <View>
         {isLoggedIn ? (
               // 로그인된 경우
-              <TouchableOpacity style={styles.Sign} onPress={() => logout()}>
-                <Text>Log-Out</Text>
+              <TouchableOpacity style={styles.Sign} onPress={handleLogout}>
+                <Text>로그아웃</Text>
               </TouchableOpacity>
             ) : (
               // 로그아웃된 경우
+              
               <TouchableOpacity style={styles.Sign} onPress={() => navigation.navigate('Signin')}>
-                <Text>Log-In</Text>
+                <Text>로그인</Text>
               </TouchableOpacity>
             )}
         </View>
@@ -268,9 +293,9 @@ const HomeScreen = ({ navigation }) => {
         showsVerticalScrollIndicator={false}
         bounces={false}
       >
-        <View style={styles.imageContainer}>
+        {/* <View style={styles.imageContainer}>
           <Image source={require('./images/tsf_main.png')} style={styles.Image} resizeMode="cover" />
-        </View>
+        </View> */}
 
         <View style={styles.adContainer}>
         <TouchableOpacity onPress={()=>navigation.navigate('BoardEduTechDetail',{ EducationId: 'EducationId' })}>
@@ -376,7 +401,8 @@ const HomeScreen = ({ navigation }) => {
     justifyContent: 'space-between',
   },
   Sign: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
+    color: 'black',
     padding: 10,
     borderRadius: 5,
   },

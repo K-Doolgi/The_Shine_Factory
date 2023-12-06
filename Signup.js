@@ -49,9 +49,9 @@ const Signup = ({ navigation }) => {
   
     // 필수 정보 누락 여부 확인
     if (!name || !username || !userID || !password || !confirmPassword || !address || !phoneNumber || !selectedQuestion || !securityAnswer) {
-      console.log('Please fill in all required fields');
+      console.log('필수 작성 정보를 기입해주세요.');
       // 필수 정보 누락 경고창 표시
-      Alert.alert('Warning', 'Please fill in all required fields');
+      Alert.alert('Warning', '필수 작성 정보를 기입해주세요.');
       return;
     }
     else {
@@ -70,30 +70,37 @@ const Signup = ({ navigation }) => {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <ScrollView>
-    <View style={styles.container}>
-      <Text style = {styles.brand}>The Shine Factory</Text>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.navigate('Signin')}>
-          <Text style={styles.headerText}>{"<"}</Text>
-        </TouchableOpacity>
-        <Text style={styles.title}>회원가입 {userType === 'user' ? '(일반인)' : '(기업전용)'}</Text>
-        <Button title="회원가입" onPress={handleSignup} />
-      </View>
+          <View style={styles.container}>
+            <View>
+              <Text style = {styles.brand}>The Shine Factory</Text>
+            </View>
+          
+          <View style={styles.header}>
 
-      <View style={styles.userTypeContainer}>
-        <TouchableOpacity
-          style={[styles.userTypeButton, userType === 'user' && styles.selectedUserTypeButton]}
-          onPress={() => setUserType('user')}
-        >
-          <Text style={styles.userTypeButtonText}>일반인</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.userTypeButton, userType === 'enterprise' && styles.selectedUserTypeButton]}
-          onPress={() => setUserType('enterprise')}
-        >
-          <Text style={styles.userTypeButtonText}>기업전용</Text>
-        </TouchableOpacity>
-      </View>
+            <TouchableOpacity onPress={() => navigation.navigate('Signin')}>
+              <Text style={styles.headerText}>{"<"}</Text>
+            </TouchableOpacity>
+
+            <Text style={styles.title}>회원가입 {userType === 'user' ? '(일반인)' : '(강사전용)'}</Text>
+            
+              <Button title="회원가입" onPress={handleSignup} />
+          </View>
+
+          <View style={styles.userTypeContainer}>
+            <TouchableOpacity
+              style={[styles.userTypeButton, userType === 'user' && styles.selectedUserTypeButton]}
+              onPress={() => setUserType('user')}
+            >
+              <Text style={styles.userTypeButtonText}>일반인</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity
+              style={[styles.userTypeButton, userType === 'enterprise' && styles.selectedUserTypeButton]}
+              onPress={() => setUserType('enterprise')}
+            >
+              <Text style={styles.userTypeButtonText}>강사전용</Text>
+            </TouchableOpacity>
+          </View>
 
 
       <TextInput
@@ -110,7 +117,7 @@ const Signup = ({ navigation }) => {
       />
       <TextInput
         style={styles.input}
-        placeholder="사용하실 아이디(이메일)을 입력해주세요."
+        placeholder="사용하실 아이디를 입력해주세요."
         value={userID}
         onChangeText={setUserID}
       />
@@ -146,7 +153,7 @@ const Signup = ({ navigation }) => {
   
         <TextInput
           style={styles.input}
-          placeholder="전화번호를 입력해주세요 ('-' 포함)"
+          placeholder="전화번호를 입력해주세요. ('-' 제외)"
           keyboardType="phone-pad"
           value={phoneNumber}
           onChangeText={setPhoneNumber}
@@ -211,7 +218,7 @@ const styles = StyleSheet.create({
   container: {
     marginTop: StatusBar.currentHeight,
     flex: 1,
-    padding: 20,
+    padding: 10,
   },
   brand: {
     fontSize: 25,

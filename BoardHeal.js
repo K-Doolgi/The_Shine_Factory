@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   button: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 10,
     borderRadius: 5,
   },
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   paginationButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 8,
     borderRadius: 5,
   },

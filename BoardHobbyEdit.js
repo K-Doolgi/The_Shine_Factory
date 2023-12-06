@@ -53,7 +53,7 @@ const BoardHobbyEdit = ({ route }) => {
 
           <View>
             <Text style={styles.titleText}>동호회 게시판</Text>
-            <Text style={styles.subtitleText}>동아리, 동호회 홍보글</Text>
+            {/* <Text style={styles.subtitleText}>동아리, 동호회 홍보글</Text> */}
           </View>
 
           <TouchableOpacity style={styles.button} onPress={handleCancelPress}>
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     borderColor: 'black',
   },
   button: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#F7C524',
     padding: 10,
     borderRadius: 5,
     marginTop: 20,
